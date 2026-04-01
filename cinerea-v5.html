@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cinerea Films — A Decade of Crafted Storytelling</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #080808;
+  --dark: #0d0d0d;
+  --card: #131313;
+  --teal: #2de4c8;
+  --teal-dim: rgba(45,228,200,0.07);
+  --teal-border: rgba(45,228,200,0.2);
+  --white: #f0f0f0;
+  --dim: #505050;
+  --dim2: #848484;
+  --border: rgba(255,255,255,0.052);
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Barlow', sans-serif; overflow-x: hidden; cursor: none; }
+
+/* ── CURSOR ── */
+.cursor { position: fixed; width: 8px; height: 8px; background: var(--teal); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .2s, height .2s, opacity .2s; }
+.cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(45,228,200,0.3); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: left .08s ease-out, top .08s ease-out, width .2s, height .2s; }
+.cursor.hover { width: 12px; height: 12px; }
+.cursor-ring.hover { width: 48px; height: 48px; }
+.cursor.hidden, .cursor-ring.hidden { opacity: 0; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 3rem;
+  border-bottom: 0.5px solid var(--border);
+  background: rgba(8,8,8,0.92);
+  backdrop-filter: blur(20px);
+  transform: translateY(-100%);
+  animation: navSlideIn .8s .3s cubic-bezier(.22,1,.36,1) forwards;
+}
+@keyframes navSlideIn { to { transform: translateY(0); } }
+.nav-logo { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; }
+.nav-logo img { height: 30px; width: auto; }
+.nav-logo-text { font-family: 'Barlow Condensed', sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.26em; color: var(--white); text-transform: uppercase; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-family: 'Barlow Condensed', sans-serif; font-size: 0.64rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim2); text-decoration: none; transition: color .2s; position: relative; padding-bottom: 2px; }
+.nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--teal); transition: width .3s; }
+.nav-links a:hover, .nav-links a.active { color: var(--teal); }
+.nav-links a.active::after, .nav-links a:hover::after { width: 100%; }
+
+/* ── HERO ── */
+#hero { height: 100vh; min-height: 640px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; border-bottom: 0.5px solid var(--border); }
+.hero-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 55px 55px; animation: gridFade 1.5s ease forwards; opacity: 0; }
+@keyframes gridFade { to { opacity: 0.55; } }
+.hero-glow { position: absolute; width: 900px; height: 900px; background: radial-gradient(circle, rgba(45,228,200,0.05) 0%, transparent 65%); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; animation: glowPulse 4s ease-in-out infinite; }
+@keyframes glowPulse { 0%,100% { opacity: .7; } 50% { opacity: 1; } }
+.hero-content { position: relative; z-index: 2; text-align: center; padding: 0 2rem; display: flex; flex-direction: column; align-items: center; }
+.hero-logo-wrap { margin-bottom: 2.2rem; opacity: 0; animation: logoReveal 1s .5s cubic-bezier(.22,1,.36,1) forwards; }
+@keyframes logoReveal { from { opacity: 0; transform: scale(.85) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+.hero-logo-wrap img { width: 112px; height: auto; display: block; }
+.hero-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 0.62rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.2rem; opacity: 0; animation: fadeUp .8s .8s ease forwards; }
+.hero-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.2rem, 7.5vw, 7rem); line-height: 0.88; letter-spacing: 0.03em; color: var(--white); }
+.hero-headline .word { display: inline-block; opacity: 0; transform: translateY(28px); }
+.hero-headline em { color: var(--teal); font-style: normal; }
+.hero-sub { font-family: 'Barlow', sans-serif; font-size: 0.95rem; font-weight: 300; color: var(--dim2); margin-top: 1.6rem; max-width: 440px; line-height: 1.7; opacity: 0; animation: fadeUp .8s 1.4s ease forwards; }
+.hero-cta-row { display: flex; gap: 1rem; margin-top: 2rem; opacity: 0; animation: fadeUp .8s 1.55s ease forwards; }
+.btn-primary { font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; background: var(--teal); color: var(--black); border: none; padding: 0.85rem 2rem; cursor: none; transition: opacity .2s, transform .2s; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; }
+.btn-primary:hover { opacity: .85; transform: translateY(-2px); }
+.btn-outline { font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; background: none; color: var(--white); border: 0.5px solid rgba(255,255,255,0.25); padding: 0.85rem 2rem; cursor: none; transition: border-color .2s, color .2s, transform .2s; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; }
+.btn-outline:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+.hero-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 0; margin-top: 1.8rem; border: 0.5px solid var(--teal-border); overflow: hidden; opacity: 0; animation: fadeUp .8s 1.7s ease forwards; }
+.hero-pill { font-family: 'Barlow Condensed', sans-serif; font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--teal); padding: 0.5rem 1.1rem; border-right: 0.5px solid var(--teal-border); }
+.hero-pill:last-child { border-right: none; }
+.hero-scroll { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; opacity: 0; animation: fadeUp .8s 2s ease forwards; }
+.hero-scroll span { font-family: 'Barlow Condensed', sans-serif; font-size: 0.54rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--dim); }
+.scroll-line { width: 0.5px; height: 40px; background: linear-gradient(to bottom, var(--teal), transparent); animation: scrollAnim 2s 2.2s infinite; opacity: 0; }
+@keyframes scrollAnim { 0% { opacity: 0; transform: scaleY(0); transform-origin: top; } 40% { opacity: 1; } 80% { transform: scaleY(1); opacity: 0; transform-origin: top; } 100% { opacity: 0; } }
+
+/* ── TICKER ── */
+.ticker-wrap { overflow: hidden; border-bottom: 0.5px solid var(--border); padding: 0.8rem 0; background: var(--dark); }
+.ticker { display: flex; gap: 2.5rem; animation: ticker 55s linear infinite; white-space: nowrap; width: max-content; }
+.ticker-item { font-family: 'Barlow Condensed', sans-serif; font-size: 0.57rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--dim); }
+.ticker-item::after { content: '·'; color: var(--teal); margin-left: 2.5rem; opacity: 0.5; }
+
+/* ── STATS ── */
+.stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 0.5px solid var(--border); }
+.stat-cell { padding: 2.2rem 2.5rem; border-right: 0.5px solid var(--border); text-align: center; position: relative; overflow: hidden; transition: background .3s; }
+.stat-cell:last-child { border-right: none; }
+.stat-cell:hover { background: var(--teal-dim); }
+.stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--teal); line-height: 1; letter-spacing: 0.02em; }
+.stat-num sup { font-size: 1.3rem; }
+.stat-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim2); margin-top: 0.3rem; }
+
+/* ── SECTION HEADERS ── */
+.section-header { padding: 3.2rem 3rem 2rem; border-bottom: 0.5px solid var(--border); }
+.section-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 0.58rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.6rem; transform: translateX(-20px); opacity: 0; transition: transform .6s, opacity .6s; }
+.section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: 0.04em; color: var(--white); line-height: 1; transform: translateY(20px); opacity: 0; transition: transform .6s .12s, opacity .6s .12s; }
+.section-header.visible .section-eyebrow { transform: translateX(0); opacity: 1; }
+.section-header.visible .section-title { transform: translateY(0); opacity: 1; }
+
+/* ── WORK ── */
+#work { border-bottom: 0.5px solid var(--border); }
+.filter-bar { display: flex; padding: 0 3rem; border-bottom: 0.5px solid var(--border); overflow-x: auto; }
+.filter-btn { font-family: 'Barlow Condensed', sans-serif; font-size: 0.63rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim2); background: none; border: none; border-bottom: 2px solid transparent; padding: 0.95rem 1.3rem; cursor: none; transition: color .2s, border-color .2s; white-space: nowrap; }
+.filter-btn:hover { color: var(--white); }
+.filter-btn.active { color: var(--teal); border-bottom-color: var(--teal); }
+.work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+.work-card { position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--card); cursor: none; opacity: 0; transform: translateY(16px); transition: opacity .5s, transform .5s; }
+.work-card.card-visible { opacity: 1; transform: translateY(0); }
+.work-card.hidden { display: none; }
+.work-thumb { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .7s cubic-bezier(.25,.46,.45,.94), filter .4s; filter: brightness(.7) saturate(.6); }
+.work-card:hover .work-thumb { transform: scale(1.07); filter: brightness(.4) saturate(.3); }
+.thumb-ph { width: 100%; height: 100%; background: var(--card); display: flex; align-items: center; justify-content: center; position: relative; }
+.thumb-ph::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.01) 10px, rgba(255,255,255,0.01) 11px); }
+.spin { width: 24px; height: 24px; border: 1px solid var(--teal-border); border-top-color: var(--teal); border-radius: 50%; animation: spin 1s linear infinite; }
+.work-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,8,0.97) 0%, rgba(8,8,8,0.1) 55%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.3rem; opacity: 0; transition: opacity .35s; }
+.work-card:hover .work-overlay { opacity: 1; }
+.work-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%) scale(.7); width: 50px; height: 50px; border: 1.5px solid var(--teal); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transition: transform .35s cubic-bezier(.34,1.56,.64,1), opacity .3s; }
+.work-card:hover .work-play { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+.work-title { font-family: 'Barlow Condensed', sans-serif; font-size: 0.92rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); margin-bottom: 0.22rem; line-height: 1.2; transform: translateY(8px); transition: transform .3s; }
+.work-card:hover .work-title { transform: translateY(0); }
+.work-cat { font-family: 'Barlow Condensed', sans-serif; font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--teal); transform: translateY(6px); transition: transform .3s .05s; }
+.work-card:hover .work-cat { transform: translateY(0); }
+.grid-loading { grid-column: 1/-1; display: flex; align-items: center; justify-content: center; padding: 5rem; flex-direction: column; gap: 1rem; }
+.grid-loading-text { font-family: 'Barlow Condensed', sans-serif; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); }
+.load-more-wrap { text-align: center; padding: 2.2rem; border-top: 0.5px solid var(--border); }
+.load-more-btn { font-family: 'Barlow Condensed', sans-serif; font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); background: none; border: 1px solid var(--teal-border); padding: 0.82rem 2.4rem; cursor: none; transition: background .25s, color .25s, transform .2s; }
+.load-more-btn:hover { background: var(--teal); color: var(--black); transform: translateY(-2px); }
+
+/* ── PROCESS ── */
+#process { border-bottom: 0.5px solid var(--border); }
+.process-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+.process-step { padding: 3rem; border-right: 0.5px solid var(--border); position: relative; overflow: hidden; transition: background .3s; }
+.process-step:last-child { border-right: none; }
+.process-step:hover { background: var(--teal-dim); }
+.process-step-num { font-family: 'Bebas Neue', sans-serif; font-size: 5rem; color: var(--teal); opacity: 0.07; line-height: 1; position: absolute; top: 1.5rem; right: 2rem; }
+.process-step-icon { width: 44px; height: 44px; border: 0.5px solid var(--teal-border); display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+.process-step-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.04em; color: var(--white); margin-bottom: 0.8rem; }
+.process-step-desc { font-size: 0.82rem; color: var(--dim2); line-height: 1.85; font-weight: 300; }
+.process-arrow { display: flex; align-items: center; justify-content: center; padding: 0 1rem; color: var(--teal); opacity: 0.3; font-size: 1.5rem; align-self: center; }
+
+/* ── ABOUT ── */
+#about { border-bottom: 0.5px solid var(--border); }
+.about-inner { display: grid; grid-template-columns: 1fr 1fr; }
+.about-left { padding: 3.5rem 3rem; border-right: 0.5px solid var(--border); }
+.about-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 3.5vw, 3.2rem); line-height: 0.95; color: var(--white); margin: 0.8rem 0 1.6rem; }
+.about-headline em { color: var(--teal); font-style: normal; }
+.about-body { font-size: 0.9rem; color: var(--dim2); line-height: 2; font-weight: 300; max-width: 460px; }
+.about-body p + p { margin-top: 1rem; }
+.about-right { padding: 3.5rem 3rem; display: flex; flex-direction: column; justify-content: center; }
+.about-right-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.5rem; }
+.strength-list { display: flex; flex-direction: column; }
+.strength-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1.1rem 0; border-bottom: 0.5px solid var(--border); transition: padding-left .3s; }
+.strength-item:last-child { border-bottom: none; }
+.strength-item:hover { padding-left: 0.5rem; }
+.strength-num { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: var(--teal); opacity: 0.35; flex-shrink: 0; width: 1.5rem; line-height: 1.5; }
+.strength-name { font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); font-weight: 600; }
+.strength-desc { font-size: 0.76rem; color: var(--dim2); font-weight: 300; margin-top: 0.15rem; line-height: 1.6; }
+
+/* ── SERVICES ── */
+#services { border-bottom: 0.5px solid var(--border); }
+.service-row { display: flex; justify-content: space-between; align-items: center; padding: 1.7rem 3rem; border-bottom: 0.5px solid var(--border); transition: background .25s, padding-left .3s; cursor: none; opacity: 0; transform: translateX(-20px); }
+.service-row.row-visible { opacity: 1; transform: translateX(0); }
+.service-row:last-child { border-bottom: none; }
+.service-row:hover { background: var(--teal-dim); padding-left: 3.6rem; }
+.service-row-left { display: flex; align-items: center; gap: 1.5rem; }
+.service-num { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: var(--teal); opacity: 0.28; width: 2rem; }
+.service-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; letter-spacing: 0.04em; color: var(--white); transition: color .25s; }
+.service-row:hover .service-name { color: var(--teal); }
+.service-desc { font-size: 0.78rem; color: var(--dim2); max-width: 340px; text-align: right; line-height: 1.75; font-weight: 300; }
+
+/* ── TESTIMONIALS ── */
+#testimonials { border-bottom: 0.5px solid var(--border); }
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+.testimonial-item { padding: 2.5rem 2.8rem; border-right: 0.5px solid var(--border); transition: background .3s; }
+.testimonial-item:last-child { border-right: none; }
+.testimonial-item:hover { background: var(--teal-dim); }
+.testimonial-quote { font-size: 2rem; color: var(--teal); opacity: 0.3; line-height: 1; margin-bottom: 1rem; font-family: Georgia, serif; }
+.testimonial-text { font-size: 0.85rem; color: var(--dim2); line-height: 1.9; font-weight: 300; font-style: italic; margin-bottom: 1.5rem; }
+.testimonial-divider { width: 24px; height: 1px; background: var(--teal); opacity: 0.4; margin-bottom: 1rem; }
+.testimonial-name { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); }
+.testimonial-role { font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim2); margin-top: 0.2rem; }
+
+/* ── CLIENTS ── */
+#clients { border-bottom: 0.5px solid var(--border); overflow: hidden; }
+.client-track { padding: 2.8rem 0; border-bottom: 0.5px solid var(--border); overflow: hidden; position: relative; }
+.client-track:last-child { border-bottom: none; }
+.client-track::before, .client-track::after { content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none; }
+.client-track::before { left: 0; background: linear-gradient(to right, var(--black), transparent); }
+.client-track::after { right: 0; background: linear-gradient(to left, var(--black), transparent); }
+.client-marquee { display: flex; gap: 4rem; animation: ticker 60s linear infinite; white-space: nowrap; width: max-content; align-items: center; }
+.client-marquee.reverse { animation-direction: reverse; animation-duration: 70s; }
+.client-name { font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); transition: color .3s; white-space: nowrap; }
+.client-name:hover { color: var(--teal); }
+.client-dot { color: var(--teal); opacity: 0.25; font-size: 0.5rem; }
+
+/* ── CONTACT ── */
+#contact { border-bottom: 0.5px solid var(--border); }
+.contact-inner { display: grid; grid-template-columns: 1fr 1fr; }
+.contact-left { padding: 4rem 3rem; border-right: 0.5px solid var(--border); }
+.contact-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.8rem, 4.5vw, 5rem); line-height: 0.88; color: var(--white); margin: 0.8rem 0 2rem; }
+.contact-headline em { color: var(--teal); font-style: normal; display: block; }
+.contact-info { display: flex; flex-direction: column; gap: 0; }
+.contact-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1.3rem 0; border-bottom: 0.5px solid var(--border); transition: padding-left .3s; }
+.contact-item:first-child { padding-top: 0; }
+.contact-item:last-child { border-bottom: none; padding-bottom: 0; }
+.contact-item:hover { padding-left: 0.4rem; }
+.contact-icon { width: 34px; height: 34px; border: 0.5px solid var(--teal-border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background .25s; }
+.contact-item:hover .contact-icon { background: var(--teal-dim); }
+.contact-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.55rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.25rem; }
+.contact-val { font-size: 0.9rem; color: var(--white); }
+
+/* CONTACT FORM */
+.contact-right { padding: 4rem 3rem; }
+.form-title { font-family: 'Barlow Condensed', sans-serif; font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.5rem; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+.form-group.full { grid-column: 1/-1; }
+.form-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim2); }
+.form-input, .form-select, .form-textarea { background: rgba(255,255,255,0.04); border: 0.5px solid var(--border); color: var(--white); font-family: 'Barlow', sans-serif; font-size: 0.85rem; padding: 0.75rem 1rem; outline: none; transition: border-color .2s, background .2s; width: 100%; }
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--teal-border); background: rgba(45,228,200,0.04); }
+.form-input::placeholder, .form-textarea::placeholder { color: var(--dim); }
+.form-select { appearance: none; cursor: none; }
+.form-select option { background: #1a1a1a; color: var(--white); }
+.form-textarea { resize: vertical; min-height: 110px; font-family: 'Barlow', sans-serif; }
+.form-submit-row { display: flex; gap: 1rem; align-items: center; margin-top: 0.5rem; }
+.form-submit { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; background: var(--teal); color: var(--black); border: none; padding: 0.9rem 2.2rem; cursor: none; transition: opacity .2s, transform .2s; }
+.form-submit:hover { opacity: .85; transform: translateY(-2px); }
+.form-success { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; letter-spacing: 0.12em; color: var(--teal); display: none; }
+.form-success.show { display: block; }
+
+/* ── WHATSAPP ── */
+.whatsapp-btn { position: fixed; bottom: 5rem; right: 2rem; z-index: 400; width: 52px; height: 52px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.35); transition: transform .25s, box-shadow .25s; opacity: 0; animation: fadeUp .8s 2.5s ease forwards; }
+.whatsapp-btn:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 6px 28px rgba(37,211,102,0.5); }
+.whatsapp-btn svg { width: 26px; height: 26px; }
+
+/* ── BACK TO TOP ── */
+.back-top { position: fixed; bottom: 2rem; right: 2rem; z-index: 400; width: 42px; height: 42px; background: var(--dark); border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: none; opacity: 0; transform: translateY(10px); transition: opacity .3s, transform .3s, background .2s, border-color .2s; }
+.back-top.show { opacity: 1; transform: translateY(0); }
+.back-top:hover { background: var(--teal-dim); border-color: var(--teal-border); }
+.back-top svg { stroke: var(--dim2); transition: stroke .2s; }
+.back-top:hover svg { stroke: var(--teal); }
+
+/* ── FOOTER ── */
+footer { background: var(--dark); border-top: 0.5px solid var(--border); }
+.footer-top { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 3rem; border-bottom: 0.5px solid var(--border); gap: 2rem; }
+.footer-brand .footer-logo-text { font-family: 'Barlow Condensed', sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: var(--white); margin-bottom: 0.6rem; }
+.footer-brand p { font-size: 0.78rem; color: var(--dim2); line-height: 1.8; font-weight: 300; max-width: 240px; margin-bottom: 1.5rem; }
+.social-links { display: flex; gap: 0.7rem; }
+.social-link { width: 36px; height: 36px; border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: center; transition: border-color .2s, background .2s; text-decoration: none; }
+.social-link:hover { border-color: var(--teal-border); background: var(--teal-dim); }
+.social-link svg { fill: var(--dim2); transition: fill .2s; }
+.social-link:hover svg { fill: var(--teal); }
+.footer-nav-title { font-family: 'Barlow Condensed', sans-serif; font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.2rem; }
+.footer-nav-links { display: flex; flex-direction: column; gap: 0.7rem; }
+.footer-nav-links a { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim2); text-decoration: none; transition: color .2s; }
+.footer-nav-links a:hover { color: var(--teal); }
+.footer-contact-item { display: flex; flex-direction: column; gap: 0.2rem; margin-bottom: 0.9rem; }
+.footer-contact-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); }
+.footer-contact-val { font-size: 0.8rem; color: var(--dim2); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 3rem; }
+.footer-copy { font-family: 'Barlow Condensed', sans-serif; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(80,80,80,0.7); }
+
+/* ── LIGHTBOX ── */
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0); z-index: 1000; display: flex; align-items: center; justify-content: center; pointer-events: none; transition: background .4s, backdrop-filter .4s; backdrop-filter: blur(0px); }
+.lightbox.open { background: rgba(0,0,0,0.96); pointer-events: all; backdrop-filter: blur(12px); }
+.lightbox-inner { width: 90vw; max-width: 1100px; position: relative; transform: scale(.94) translateY(20px); transition: transform .4s cubic-bezier(.34,1.2,.64,1), opacity .4s; opacity: 0; }
+.lightbox.open .lightbox-inner { transform: scale(1) translateY(0); opacity: 1; }
+.lightbox-video { width: 100%; aspect-ratio: 16/9; border: 0.5px solid var(--teal-border); display: block; }
+.lightbox-close { position: absolute; top: -2.8rem; right: 0; background: none; border: none; color: var(--dim2); font-family: 'Barlow Condensed', sans-serif; font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase; cursor: none; transition: color .2s; }
+.lightbox-close:hover { color: var(--teal); }
+.lightbox-title { margin-top: 0.8rem; font-family: 'Barlow Condensed', sans-serif; font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim2); text-align: center; }
+
+/* ── KEYFRAMES ── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#hero" class="nav-logo">
+    <img src="cinereaLogo.png" alt="Cinerea Films" onerror="this.style.display='none'">
+    <span class="nav-logo-text">Cinerea Films</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#work" data-section="work">Work</a></li>
+    <li><a href="#process" data-section="process">Process</a></li>
+    <li><a href="#about" data-section="about">About</a></li>
+    <li><a href="#clients" data-section="clients">Clients</a></li>
+    <li><a href="#contact" data-section="contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-logo-wrap">
+      <img src="cinereaLogo.png" alt="Cinerea Films" style="width:112px;height:auto" onerror="this.style.display='none'">
+    </div>
+    <p class="hero-eyebrow">Mumbai · Est. 2014</p>
+    <h1 class="hero-headline" id="heroHeadline">
+      <span class="line1">A Decade of</span><br>
+      <em><span class="line2">Crafted Storytelling</span></em>
+    </h1>
+    <p class="hero-sub">Production-led creative for brands that value quality and efficiency</p>
+    <div class="hero-cta-row">
+      <a href="#work" class="btn-primary">View Our Work</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+    </div>
+    <div class="hero-pills">
+      <span class="hero-pill">Brand Films</span>
+      <span class="hero-pill">TVC</span>
+      <span class="hero-pill">Short Films</span>
+      <span class="hero-pill">Digital Content</span>
+      <span class="hero-pill">Campaigns</span>
+      <span class="hero-pill">Documentary</span>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="ticker-item">Brand Films</span><span class="ticker-item">TVC</span>
+    <span class="ticker-item">Short Films</span><span class="ticker-item">Digital Content</span>
+    <span class="ticker-item">Marketing Campaigns</span><span class="ticker-item">Documentary</span>
+    <span class="ticker-item">Pre-Production</span><span class="ticker-item">Post-Production</span>
+    <span class="ticker-item">Brand Films</span><span class="ticker-item">TVC</span>
+    <span class="ticker-item">Short Films</span><span class="ticker-item">Digital Content</span>
+    <span class="ticker-item">Marketing Campaigns</span><span class="ticker-item">Documentary</span>
+    <span class="ticker-item">Pre-Production</span><span class="ticker-item">Post-Production</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-cell reveal"><div class="stat-num" data-target="10" data-suffix="+">0</div><div class="stat-label">Years of Experience</div></div>
+  <div class="stat-cell reveal" style="transition-delay:.1s"><div class="stat-num" data-target="59" data-suffix="+">0</div><div class="stat-label">Films Delivered</div></div>
+  <div class="stat-cell reveal" style="transition-delay:.2s"><div class="stat-num" data-target="25" data-suffix="+">0</div><div class="stat-label">Brand Partners</div></div>
+  <div class="stat-cell reveal" style="transition-delay:.3s"><div class="stat-num" data-target="6" data-suffix="">0</div><div class="stat-label">Content Formats</div></div>
+</div>
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-header reveal">
+    <p class="section-eyebrow">Selected Work</p>
+    <h2 class="section-title">Our Portfolio</h2>
+  </div>
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All Work</button>
+    <button class="filter-btn" data-filter="tvc">TVC</button>
+    <button class="filter-btn" data-filter="brand">Brand Films</button>
+    <button class="filter-btn" data-filter="shortfilm">Short Films</button>
+    <button class="filter-btn" data-filter="digital">Digital Content</button>
+    <button class="filter-btn" data-filter="campaign">Campaigns</button>
+    <button class="filter-btn" data-filter="documentary">Documentary</button>
+  </div>
+  <div class="work-grid" id="workGrid">
+    <div class="grid-loading"><div class="spin" style="width:30px;height:30px"></div><div class="grid-loading-text">Loading portfolio...</div></div>
+  </div>
+  <div class="load-more-wrap" id="loadMoreWrap" style="display:none">
+    <button class="load-more-btn" id="loadMoreBtn">Load More</button>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-header reveal">
+    <p class="section-eyebrow">How We Work</p>
+    <h2 class="section-title">Our Process</h2>
+  </div>
+  <div class="process-grid">
+    <div class="process-step reveal">
+      <div class="process-step-num">01</div>
+      <div class="process-step-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2de4c8" stroke-width="1.5" stroke-linecap="round"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      </div>
+      <div class="process-step-title">Concept & Pre-Production</div>
+      <div class="process-step-desc">We begin with a deep dive into your brand objectives, audience, and communication goals. Every project starts with a structured brief — scripting, casting, location scouts, and a production plan that eliminates surprises on set.</div>
+    </div>
+    <div class="process-step reveal" style="transition-delay:.12s">
+      <div class="process-step-num">02</div>
+      <div class="process-step-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2de4c8" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16"/></svg>
+      </div>
+      <div class="process-step-title">Production</div>
+      <div class="process-step-desc">Lean, efficient crew structures built for precision. Our on-set execution is accountable and disciplined — we deliver premium output while keeping timelines tight and budgets optimised. Quality is never negotiable.</div>
+    </div>
+    <div class="process-step reveal" style="transition-delay:.24s">
+      <div class="process-step-num">03</div>
+      <div class="process-step-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2de4c8" stroke-width="1.5" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div class="process-step-title">Post & Delivery</div>
+      <div class="process-step-desc">End-to-end post-production coordination — edit, grade, sound, and versioning for every platform. We deliver format-ready assets with clear revision cycles and no last-minute chaos. What you approved is what you get.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <p class="section-eyebrow">Who We Are</p>
+    <h2 class="section-title">Built on Craft. Driven by Discipline.</h2>
+  </div>
+  <div class="about-inner">
+    <div class="about-left reveal">
+      <h3 class="about-headline">Production-led.<br>Brand-<em>fluent.</em></h3>
+      <div class="about-body">
+        <p>Cinerea is a production-led creative agency with over a decade of experience delivering brand films, commercials, and marketing-driven content. Our strength lies in combining strong production capabilities with a clear understanding of brand and communication objectives.</p>
+        <p>We partner closely with brand and agency teams to deliver high-quality output through disciplined planning, efficient execution, and consistent attention to detail — ensuring quality is never compromised while maintaining cost discipline.</p>
+      </div>
+    </div>
+    <div class="about-right reveal" style="transition-delay:.15s">
+      <div class="about-right-label">Production Strengths</div>
+      <div class="strength-list">
+        <div class="strength-item"><div class="strength-num">01</div><div><div class="strength-name">Pre-Production Planning</div><div class="strength-desc">Structured approach to scripting, casting, location, and logistics</div></div></div>
+        <div class="strength-item"><div class="strength-num">02</div><div><div class="strength-name">Accountable On-Set Execution</div><div class="strength-desc">Lean, efficient crew and shoot structures built for precision</div></div></div>
+        <div class="strength-item"><div class="strength-num">03</div><div><div class="strength-name">Budget Optimisation</div><div class="strength-desc">Premium output without compromising cost discipline</div></div></div>
+        <div class="strength-item"><div class="strength-num">04</div><div><div class="strength-name">Seamless Post-Production</div><div class="strength-desc">End-to-end coordination from shoot to final delivery</div></div></div>
+        <div class="strength-item"><div class="strength-num">05</div><div><div class="strength-name">Brand Communication Clarity</div><div class="strength-desc">Deep understanding of brand objectives and audience platforms</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header reveal">
+    <p class="section-eyebrow">What We Do</p>
+    <h2 class="section-title">Services</h2>
+  </div>
+  <div class="service-row" style="transition-delay:.05s"><div class="service-row-left"><div class="service-num">01</div><div class="service-name">Brand & Product Films</div></div><div class="service-desc">High-quality films that articulate brand values and product stories with clarity and consistency — built for longevity and multi-platform use.</div></div>
+  <div class="service-row" style="transition-delay:.1s"><div class="service-row-left"><div class="service-num">02</div><div class="service-name">Commercials</div></div><div class="service-desc">Multi-format commercials for TV, digital, theatre and radio — designed for scale, efficiency, and platform-first usage.</div></div>
+  <div class="service-row" style="transition-delay:.15s"><div class="service-row-left"><div class="service-num">03</div><div class="service-name">Marketing Campaigns</div></div><div class="service-desc">Integrated campaign assets across film, performance, influencer, and ATL–BTL — aligned to brand objectives and audience platforms.</div></div>
+  <div class="service-row" style="transition-delay:.2s"><div class="service-row-left"><div class="service-num">04</div><div class="service-name">Entertainment & Long-Form</div></div><div class="service-desc">Feature films, short films, OTT series, and YouTube-led IP — executed with cinematic craft and production discipline.</div></div>
+  <div class="service-row" style="transition-delay:.25s"><div class="service-row-left"><div class="service-num">05</div><div class="service-name">Digital Content</div></div><div class="service-desc">Social-first content, reels, and always-on digital campaigns built for platform-native consumption and brand consistency.</div></div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-header reveal">
+    <p class="section-eyebrow">What Clients Say</p>
+    <h2 class="section-title">Testimonials</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-item reveal">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Cinerea brought a level of production discipline we rarely see. The pre-production planning was thorough, the shoot was efficient, and the final film exceeded our expectations — on time and within budget.</p>
+      <div class="testimonial-divider"></div>
+      <div class="testimonial-name">Brand Manager</div>
+      <div class="testimonial-role">ITC Limited</div>
+    </div>
+    <div class="testimonial-item reveal" style="transition-delay:.12s">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Working with Cinerea felt like a genuine creative partnership. They understood our communication brief immediately and translated it into a film that our entire team is proud of.</p>
+      <div class="testimonial-divider"></div>
+      <div class="testimonial-name">Marketing Director</div>
+      <div class="testimonial-role">Mahindra</div>
+    </div>
+    <div class="testimonial-item reveal" style="transition-delay:.24s">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">What sets Cinerea apart is their ability to balance creative quality with production efficiency. They never compromised the vision while keeping us firmly within scope.</p>
+      <div class="testimonial-divider"></div>
+      <div class="testimonial-name">Head of Marketing</div>
+      <div class="testimonial-role">Honda India</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section id="clients">
+  <div class="section-header reveal">
+    <p class="section-eyebrow">Trusted By</p>
+    <h2 class="section-title">Brands & Partners</h2>
+  </div>
+  <div class="client-track">
+    <div class="client-marquee">
+      <span class="client-name">Honda</span><span class="client-dot">·</span>
+      <span class="client-name">Tata Trusts</span><span class="client-dot">·</span>
+      <span class="client-name">Mahindra</span><span class="client-dot">·</span>
+      <span class="client-name">Maruti Suzuki</span><span class="client-dot">·</span>
+      <span class="client-name">ITC Limited</span><span class="client-dot">·</span>
+      <span class="client-name">Reliance Digital</span><span class="client-dot">·</span>
+      <span class="client-name">Raymond</span><span class="client-dot">·</span>
+      <span class="client-name">Fortune Oils</span><span class="client-dot">·</span>
+      <span class="client-name">Vivo</span><span class="client-dot">·</span>
+      <span class="client-name">Ola</span><span class="client-dot">·</span>
+      <span class="client-name">Big Bazaar</span><span class="client-dot">·</span>
+      <span class="client-name">Herbalife</span><span class="client-dot">·</span>
+      <span class="client-name">Honda</span><span class="client-dot">·</span>
+      <span class="client-name">Tata Trusts</span><span class="client-dot">·</span>
+      <span class="client-name">Mahindra</span><span class="client-dot">·</span>
+      <span class="client-name">Maruti Suzuki</span><span class="client-dot">·</span>
+      <span class="client-name">ITC Limited</span><span class="client-dot">·</span>
+      <span class="client-name">Reliance Digital</span><span class="client-dot">·</span>
+      <span class="client-name">Raymond</span><span class="client-dot">·</span>
+      <span class="client-name">Fortune Oils</span><span class="client-dot">·</span>
+      <span class="client-name">Vivo</span><span class="client-dot">·</span>
+      <span class="client-name">Ola</span><span class="client-dot">·</span>
+      <span class="client-name">Big Bazaar</span><span class="client-dot">·</span>
+      <span class="client-name">Herbalife</span><span class="client-dot">·</span>
+    </div>
+  </div>
+  <div class="client-track">
+    <div class="client-marquee reverse">
+      <span class="client-name">Haier</span><span class="client-dot">·</span>
+      <span class="client-name">Sterling Holidays</span><span class="client-dot">·</span>
+      <span class="client-name">Syngenta</span><span class="client-dot">·</span>
+      <span class="client-name">Men of Platinum</span><span class="client-dot">·</span>
+      <span class="client-name">Saregama</span><span class="client-dot">·</span>
+      <span class="client-name">Welspun Group</span><span class="client-dot">·</span>
+      <span class="client-name">Kalpataru</span><span class="client-dot">·</span>
+      <span class="client-name">Sugee</span><span class="client-dot">·</span>
+      <span class="client-name">BPL</span><span class="client-dot">·</span>
+      <span class="client-name">Pure Roots</span><span class="client-dot">·</span>
+      <span class="client-name">Spaces</span><span class="client-dot">·</span>
+      <span class="client-name">Paradiso Bay</span><span class="client-dot">·</span>
+      <span class="client-name">Sugar Box</span><span class="client-dot">·</span>
+      <span class="client-name">Sunny</span><span class="client-dot">·</span>
+      <span class="client-name">Haier</span><span class="client-dot">·</span>
+      <span class="client-name">Sterling Holidays</span><span class="client-dot">·</span>
+      <span class="client-name">Syngenta</span><span class="client-dot">·</span>
+      <span class="client-name">Men of Platinum</span><span class="client-dot">·</span>
+      <span class="client-name">Saregama</span><span class="client-dot">·</span>
+      <span class="client-name">Welspun Group</span><span class="client-dot">·</span>
+      <span class="client-name">Kalpataru</span><span class="client-dot">·</span>
+      <span class="client-name">Sugee</span><span class="client-dot">·</span>
+      <span class="client-name">BPL</span><span class="client-dot">·</span>
+      <span class="client-name">Pure Roots</span><span class="client-dot">·</span>
+      <span class="client-name">Spaces</span><span class="client-dot">·</span>
+      <span class="client-name">Paradiso Bay</span><span class="client-dot">·</span>
+      <span class="client-name">Sugar Box</span><span class="client-dot">·</span>
+      <span class="client-name">Sunny</span><span class="client-dot">·</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header reveal">
+    <p class="section-eyebrow">Get In Touch</p>
+    <h2 class="section-title">Contact</h2>
+  </div>
+  <div class="contact-inner">
+    <div class="contact-left reveal">
+      <h3 class="contact-headline">Let's make<br>something<em>great.</em></h3>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2de4c8" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.08 6.08l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div><div class="contact-label">Phone</div><div class="contact-val">+91 989 22 99966</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2de4c8" stroke-width="1.5" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><div class="contact-label">Email</div><div class="contact-val">hello@cinereafilms.in</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2de4c8" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+          <div><div class="contact-label">Website</div><div class="contact-val">www.cinereafilms.in</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-right reveal" style="transition-delay:.15s">
+      <div class="form-title">Send us a message</div>
+      <form id="contactForm" onsubmit="return false;">
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-input" placeholder="Rahul Sharma" id="fname">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Company</label>
+            <input type="text" class="form-input" placeholder="Brand / Agency name" id="fcompany">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Project Type</label>
+            <select class="form-select" id="ftype">
+              <option value="">— Select —</option>
+              <option>Brand Film</option>
+              <option>TVC / Commercial</option>
+              <option>Short Film</option>
+              <option>Digital Content</option>
+              <option>Marketing Campaign</option>
+              <option>Documentary</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Budget Range</label>
+            <select class="form-select" id="fbudget">
+              <option value="">— Select —</option>
+              <option>Under ₹5L</option>
+              <option>₹5L – ₹15L</option>
+              <option>₹15L – ₹30L</option>
+              <option>₹30L – ₹50L</option>
+              <option>₹50L+</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="Tell us about your project..." id="fmessage"></textarea>
+        </div>
+        <div class="form-submit-row">
+          <button type="submit" class="form-submit" id="formSubmit">Send Message</button>
+          <div class="form-success" id="formSuccess">✓ Message sent! We'll be in touch shortly.</div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo-text">Cinerea Films</div>
+      <p>A decade of production-led creative for brands that value quality and efficiency.</p>
+      <div class="social-links">
+        <!-- Instagram -->
+        <a href="#" class="social-link" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <!-- YouTube -->
+        <a href="#" class="social-link" aria-label="YouTube">
+          <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+        </a>
+        <!-- Facebook -->
+        <a href="#" class="social-link" aria-label="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <!-- X/Twitter -->
+        <a href="#" class="social-link" aria-label="X">
+          <svg width="15" height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.259 5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <!-- Vimeo -->
+        <a href="#" class="social-link" aria-label="Vimeo">
+          <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.977 6.416c-.105 2.338-1.739 5.543-4.894 9.609-3.268 4.247-6.026 6.37-8.29 6.37-1.409 0-2.578-1.294-3.553-3.881L5.322 11.4C4.603 8.816 3.834 7.522 3.01 7.522c-.179 0-.806.378-1.881 1.132L0 7.197c1.185-1.044 2.351-2.084 3.501-3.128C5.08 2.701 6.266 1.984 7.055 1.91c1.867-.18 3.016 1.1 3.447 3.838.465 2.953.789 4.789.971 5.507.539 2.45 1.131 3.674 1.776 3.674.502 0 1.256-.796 2.265-2.385 1.004-1.589 1.54-2.797 1.612-3.628.144-1.371-.395-2.061-1.612-2.061-.574 0-1.167.121-1.777.391 1.186-3.868 3.434-5.757 6.762-5.637 2.473.06 3.628 1.664 3.478 4.807z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-nav-title">Navigate</div>
+      <div class="footer-nav-links">
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#clients">Clients</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-nav-title">Contact</div>
+      <div class="footer-contact-item">
+        <div class="footer-contact-label">Phone</div>
+        <div class="footer-contact-val">+91 989 22 99966</div>
+      </div>
+      <div class="footer-contact-item">
+        <div class="footer-contact-label">Email</div>
+        <div class="footer-contact-val">hello@cinereafilms.in</div>
+      </div>
+      <div class="footer-contact-item">
+        <div class="footer-contact-label">Location</div>
+        <div class="footer-contact-val">Mumbai, India</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Cinerea Films · All rights reserved</div>
+    <div class="footer-copy">A Decade of Crafted Storytelling · Mumbai</div>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/919892299966" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- BACK TO TOP -->
+<button class="back-top" id="backTop" aria-label="Back to top">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightboxClose">✕ &nbsp;Close</button>
+    <iframe class="lightbox-video" id="lightboxFrame" src="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    <div class="lightbox-title" id="lightboxTitle"></div>
+  </div>
+</div>
+
+<script>
+// ── DATA ──
+const categoryMap = {
+  602307094:"tvc",924530417:"tvc",963170632:"tvc",883911115:"tvc",924531615:"tvc",
+  810824356:"tvc",820385927:"tvc",790279616:"tvc",594591411:"tvc",
+  737501736:"brand",795822777:"brand",713257402:"brand",602317290:"brand",602300566:"brand",
+  791537409:"brand",713257157:"brand",594598563:"brand",602317398:"brand",
+  602304930:"shortfilm",924513333:"shortfilm",796952463:"shortfilm",639869290:"shortfilm",
+  798079989:"shortfilm",602315690:"shortfilm",713257476:"shortfilm",879072370:"shortfilm",641781524:"shortfilm",
+  713257236:"digital",766337092:"digital",1138762448:"digital",713256908:"digital",
+  686608375:"digital",602295301:"digital",602297254:"digital",602315594:"digital",686320426:"digital",
+  713257331:"campaign",639454878:"campaign",1007932263:"campaign",924529259:"campaign",
+  713256527:"campaign",790703335:"campaign",747369652:"campaign",791537036:"campaign",602295469:"campaign",
+  1080502861:"documentary",602307721:"documentary",1034722270:"documentary",713256673:"documentary",
+  643851656:"documentary",810824402:"documentary",772771416:"documentary",602319236:"documentary",
+  1146638319:"documentary",1022762976:"documentary",644210017:"documentary",602317622:"documentary",
+  643851769:"documentary",764896221:"documentary"
+};
+const videoIds = [602307094,924530417,963170632,883911115,924531615,810824356,820385927,790279616,594591411,737501736,795822777,713257402,602317290,602300566,791537409,713257157,594598563,602317398,602304930,924513333,796952463,639869290,798079989,602315690,713257476,879072370,641781524,713257236,766337092,1138762448,713256908,686608375,602295301,602297254,602315594,686320426,713257331,639454878,1007932263,924529259,713256527,790703335,747369652,791537036,602295469,1080502861,602307721,1034722270,713256673,643851656,810824402,772771416,602319236,1146638319,1022762976,644210017,602317622,643851769,764896221];
+const catLabels = { tvc:'TVC', brand:'Brand Film', shortfilm:'Short Film', digital:'Digital Content', campaign:'Campaign', documentary:'Documentary' };
+
+// ── CURSOR ──
+const cursor = document.getElementById('cursor');
+const ring   = document.getElementById('cursorRing');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+  ring.style.left   = e.clientX + 'px'; ring.style.top   = e.clientY + 'px';
+});
+function setCursor(state) {
+  cursor.className = 'cursor ' + state;
+  ring.className   = 'cursor-ring ' + state;
+}
+document.querySelectorAll('a, button, .filter-btn, .load-more-btn, .form-submit').forEach(el => {
+  el.addEventListener('mouseenter', () => setCursor('hover'));
+  el.addEventListener('mouseleave', () => setCursor(''));
+});
+
+// ── HERO WORD ANIMATION ──
+(function() {
+  const headline = document.getElementById('heroHeadline');
+  ['line1','line2'].forEach((cls, li) => {
+    const el = headline.querySelector('.' + cls);
+    if (!el) return;
+    const words = el.textContent.split(' ');
+    el.innerHTML = words.map(w => `<span class="word">${w}</span>`).join(' ');
+    el.querySelectorAll('.word').forEach((w, wi) => {
+      w.style.animation = `fadeUp .6s ${.9 + li*.3 + wi*.09}s cubic-bezier(.22,1,.36,1) forwards`;
+    });
+  });
+})();
+
+// ── SCROLL OBSERVER ──
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('visible');
+    if (e.target.classList.contains('section-header')) {
+      e.target.querySelector('.section-eyebrow')?.classList.add('visible');
+      e.target.querySelector('.section-title')?.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal, .section-header').forEach(el => revealObs.observe(el));
+
+// ── STATS COUNTER ──
+const statsObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('visible');
+    const num = e.target.querySelector('.stat-num[data-target]');
+    if (!num) return;
+    const target = parseInt(num.dataset.target);
+    const suffix = num.dataset.suffix || '';
+    const dur = 1600;
+    const start = performance.now();
+    (function step(now) {
+      const p = Math.min((now - start) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      num.textContent = Math.floor(ease * target) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+      else num.textContent = target + suffix;
+    })(performance.now());
+    statsObs.unobserve(e.target);
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.stat-cell').forEach(el => statsObs.observe(el));
+
+// ── SERVICE ROWS ──
+const serviceObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('row-visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.service-row').forEach(el => serviceObs.observe(el));
+
+// ── ACTIVE NAV ──
+const sections = ['hero','work','process','about','services','clients','contact'];
+const navLinks = document.querySelectorAll('.nav-links a[data-section]');
+const navObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.dataset.section === e.target.id);
+      });
+    }
+  });
+}, { threshold: 0.4 });
+sections.forEach(id => { const el = document.getElementById(id); if (el) navObs.observe(el); });
+
+// ── BACK TO TOP ──
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+  backTop.classList.toggle('show', window.scrollY > 600);
+});
+backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+backTop.addEventListener('mouseenter', () => setCursor('hover'));
+backTop.addEventListener('mouseleave', () => setCursor(''));
+
+// ── LIGHTBOX ──
+const lightbox = document.getElementById('lightbox');
+const lbFrame  = document.getElementById('lightboxFrame');
+const lbTitle  = document.getElementById('lightboxTitle');
+
+function openLightbox(id, title) {
+  lbFrame.src = `https://player.vimeo.com/video/${id}?autoplay=1&color=2de4c8&title=0&byline=0&portrait=0`;
+  lbTitle.textContent = title || '';
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  setTimeout(() => { lbFrame.src = ''; }, 400);
+  document.body.style.overflow = '';
+}
+document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+// ── PORTFOLIO ──
+let allVideos = videoIds.map(id => ({ vimeoId: id, cat: categoryMap[id] || 'tvc', title: '', thumb: '' }));
+let currentFilter = 'all';
+const PAGE = 12;
+let page = 0;
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    currentFilter = btn.dataset.filter;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    page = 0;
+    renderGrid(true);
+  });
+});
+document.getElementById('loadMoreBtn').addEventListener('click', () => { page++; renderGrid(false); });
+
+function filtered() {
+  return currentFilter === 'all' ? allVideos : allVideos.filter(v => v.cat === currentFilter);
+}
+
+function renderGrid(reset) {
+  const grid = document.getElementById('workGrid');
+  const list = filtered();
+  const slice = list.slice(0, (page + 1) * PAGE);
+  if (reset) grid.innerHTML = '';
+  if (!list.length) {
+    grid.innerHTML = '<div class="grid-loading"><div class="grid-loading-text">No videos in this category</div></div>';
+    document.getElementById('loadMoreWrap').style.display = 'none';
+    return;
+  }
+  const toRender = reset ? slice : list.slice(page * PAGE, (page + 1) * PAGE);
+  toRender.forEach((v, i) => {
+    const card = makeCard(v);
+    card.style.transitionDelay = (i % PAGE * 0.04) + 's';
+    grid.appendChild(card);
+    requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add('card-visible')));
+  });
+  document.getElementById('loadMoreWrap').style.display = slice.length < list.length ? 'block' : 'none';
+}
+
+function makeCard(v) {
+  const card = document.createElement('div');
+  card.className = 'work-card';
+  card.dataset.id = v.vimeoId;
+  card.innerHTML = `
+    ${v.thumb ? `<img class="work-thumb" src="${v.thumb}" alt="${v.title}" loading="lazy">` : `<div class="thumb-ph"><div class="spin"></div></div>`}
+    <div class="work-overlay">
+      <div class="work-play"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><polygon points="5,3 19,12 5,21" fill="#2de4c8"/></svg></div>
+      <div class="work-title">${v.title || '&nbsp;'}</div>
+      <div class="work-cat">${catLabels[v.cat] || 'Film'}</div>
+    </div>`;
+  card.addEventListener('click', () => openLightbox(v.vimeoId, v.title));
+  // Hide cursor on video tiles — card's own play button handles it
+  card.addEventListener('mouseenter', () => setCursor('hidden'));
+  card.addEventListener('mouseleave', () => setCursor(''));
+  return card;
+}
+
+// ── VIMEO THUMBNAILS ──
+async function fetchAllThumbs() {
+  for (const v of allVideos) {
+    try {
+      const res = await fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${v.vimeoId}&width=640`);
+      if (!res.ok) continue;
+      const d = await res.json();
+      v.title = d.title || '';
+      v.thumb = d.thumbnail_url || '';
+      const card = document.querySelector(`.work-card[data-id="${v.vimeoId}"]`);
+      if (card) {
+        const ph = card.querySelector('.thumb-ph');
+        if (ph && v.thumb) {
+          const img = document.createElement('img');
+          img.className = 'work-thumb'; img.src = v.thumb; img.alt = v.title; img.loading = 'lazy';
+          ph.replaceWith(img);
+        }
+        const t = card.querySelector('.work-title');
+        if (t && v.title) t.textContent = v.title;
+      }
+    } catch {}
+    await new Promise(r => setTimeout(r, 55));
+  }
+}
+
+// ── CONTACT FORM ──
+document.getElementById('contactForm').addEventListener('submit', () => {
+  const btn = document.getElementById('formSubmit');
+  const success = document.getElementById('formSuccess');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.style.display = 'none';
+    success.classList.add('show');
+    document.getElementById('fname').value = '';
+    document.getElementById('fcompany').value = '';
+    document.getElementById('ftype').value = '';
+    document.getElementById('fbudget').value = '';
+    document.getElementById('fmessage').value = '';
+  }, 1200);
+});
+
+// ── INIT ──
+renderGrid(true);
+fetchAllThumbs();
+</script>
+</body>
+</html>
