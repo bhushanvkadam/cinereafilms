@@ -4,6 +4,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cinerea Films — A Decade of Crafted Storytelling</title>
+
+<!-- SEO Meta -->
+<meta name="description" content="Cinerea Films is a Mumbai-based production house with over a decade of experience in brand films, TVCs, digital content, and marketing campaigns.">
+<meta name="keywords" content="Cinerea Films, production house, Mumbai, brand films, TVC, digital content, video production, commercials">
+<meta name="author" content="Cinerea Films">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph (WhatsApp, Facebook, LinkedIn previews) -->
+<meta property="og:title" content="Cinerea Films — A Decade of Crafted Storytelling">
+<meta property="og:description" content="Production-led creative for brands that value quality and efficiency. Mumbai-based production house with 10+ years of experience.">
+<meta property="og:image" content="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Cinerea%20Social%20Preview.png">
+<meta property="og:url" content="https://cinereafilms.com">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cinerea Films">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cinerea Films — A Decade of Crafted Storytelling">
+<meta name="twitter:description" content="Production-led creative for brands that value quality and efficiency.">
+<meta name="twitter:image" content="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Cinerea%20Social%20Preview.png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Cinerea%20Social%20Preview.png">
+<link rel="apple-touch-icon" href="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Cinerea%20Social%20Preview.png">
+
+<!-- Canonical -->
+<link rel="canonical" href="https://cinereafilms.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -21,7 +48,7 @@
   --border: rgba(255,255,255,0.052);
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; font-size: 112%; }
 body { background: var(--black); color: var(--white); font-family: 'Barlow', sans-serif; overflow-x: hidden; cursor: none; }
 
 /* ── CURSOR ── */
@@ -30,6 +57,35 @@ body { background: var(--black); color: var(--white); font-family: 'Barlow', san
 .cursor.hover { width: 12px; height: 12px; }
 .cursor-ring.hover { width: 48px; height: 48px; }
 .cursor.hidden, .cursor-ring.hidden { opacity: 0; }
+.cursor.play-cursor { width: 0; height: 0; background: transparent; }
+.cursor-ring.play-cursor { width: 0; height: 0; border-color: transparent; }
+.play-label {
+  position: fixed; pointer-events: none; z-index: 9999;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--teal);
+  display: flex; align-items: center; gap: 0.4rem;
+  transform: translate(-50%, -50%);
+  opacity: 0; transition: opacity .15s;
+  white-space: nowrap;
+}
+.play-label.show { opacity: 1; }
+.cursor.play-cursor { width: 0; height: 0; background: transparent; }
+.cursor-ring.play-cursor { width: 0; height: 0; border-color: transparent; }
+.play-label {
+  position: fixed; pointer-events: none; z-index: 9999;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--teal);
+  display: flex; align-items: center; gap: 0.4rem;
+  transform: translate(-50%, -50%);
+  opacity: 0; transition: opacity .15s;
+  white-space: nowrap;
+}
+.play-label.show { opacity: 1; }
+.play-label svg { flex-shrink: 0; }
 
 /* ── NAV ── */
 nav {
@@ -54,14 +110,24 @@ nav {
 
 /* ── HERO ── */
 #hero { height: 100vh; min-height: 640px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; border-bottom: 0.5px solid var(--border); }
-.hero-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 55px 55px; animation: gridFade 1.5s ease forwards; opacity: 0; }
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(
+    -55deg,
+    var(--teal-border) 0px,
+    var(--teal-border) 0.5px,
+    transparent 0.5px,
+    transparent 38px
+  );
+  animation: gridFade 1.5s ease forwards; opacity: 0;
+}
 @keyframes gridFade { to { opacity: 0.55; } }
 .hero-glow { position: absolute; width: 900px; height: 900px; background: radial-gradient(circle, rgba(45,228,200,0.05) 0%, transparent 65%); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; animation: glowPulse 4s ease-in-out infinite; }
 @keyframes glowPulse { 0%,100% { opacity: .7; } 50% { opacity: 1; } }
 .hero-content { position: relative; z-index: 2; text-align: center; padding: 0 2rem; display: flex; flex-direction: column; align-items: center; }
 .hero-logo-wrap { margin-bottom: 2.2rem; opacity: 0; animation: logoReveal 1s .5s cubic-bezier(.22,1,.36,1) forwards; }
 @keyframes logoReveal { from { opacity: 0; transform: scale(.85) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-.hero-logo-wrap img { width: 112px; height: auto; display: block; }
+.hero-logo-wrap img { width: 148px; height: auto; display: block; }
 .hero-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 0.62rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.2rem; opacity: 0; animation: fadeUp .8s .8s ease forwards; }
 .hero-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.2rem, 7.5vw, 7rem); line-height: 0.88; letter-spacing: 0.03em; color: var(--white); }
 .hero-headline .word { display: inline-block; opacity: 0; transform: translateY(28px); }
@@ -152,7 +218,17 @@ nav {
 .about-body { font-size: 0.9rem; color: var(--dim2); line-height: 2; font-weight: 300; max-width: 460px; }
 .about-body p + p { margin-top: 1rem; }
 .about-right { padding: 3.5rem 3rem; display: flex; flex-direction: column; justify-content: center; }
-.about-right-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.5rem; }
+.about-right-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 0.5rem;
+}
+.about-right-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  letter-spacing: 0.04em; color: var(--white);
+  line-height: 1; margin-bottom: 1.8rem;
+}
 .strength-list { display: flex; flex-direction: column; }
 .strength-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1.1rem 0; border-bottom: 0.5px solid var(--border); transition: padding-left .3s; }
 .strength-item:last-child { border-bottom: none; }
@@ -187,16 +263,39 @@ nav {
 
 /* ── CLIENTS ── */
 #clients { border-bottom: 0.5px solid var(--border); overflow: hidden; }
-.client-track { padding: 2.8rem 0; border-bottom: 0.5px solid var(--border); overflow: hidden; position: relative; }
+.client-track { padding: 2.5rem 0; border-bottom: 0.5px solid var(--border); overflow: hidden; position: relative; }
 .client-track:last-child { border-bottom: none; }
-.client-track::before, .client-track::after { content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none; }
+.client-track::before, .client-track::after { content: ''; position: absolute; top: 0; bottom: 0; width: 160px; z-index: 2; pointer-events: none; }
 .client-track::before { left: 0; background: linear-gradient(to right, var(--black), transparent); }
 .client-track::after { right: 0; background: linear-gradient(to left, var(--black), transparent); }
 .client-marquee { display: flex; gap: 4rem; animation: ticker 60s linear infinite; white-space: nowrap; width: max-content; align-items: center; }
 .client-marquee.reverse { animation-direction: reverse; animation-duration: 70s; }
-.client-name { font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); transition: color .3s; white-space: nowrap; }
-.client-name:hover { color: var(--teal); }
-.client-dot { color: var(--teal); opacity: 0.25; font-size: 0.5rem; }
+
+/* LOGO ITEMS */
+.logo-item {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  height: 56px; padding: 0.6rem 1.2rem; flex-shrink: 0;
+  background: rgba(255,255,255,0.04);
+  border: 0.5px solid rgba(255,255,255,0.07);
+  border-radius: 4px;
+  transition: background .3s, border-color .3s;
+}
+.logo-item:hover { background: rgba(255,255,255,0.09); border-color: rgba(45,228,200,0.25); }
+.logo-item img {
+  height: 32px; width: auto; max-width: 120px;
+  object-fit: contain; display: block;
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+  transition: opacity .3s, transform .3s, filter .3s;
+}
+.logo-item:hover img { opacity: 1; transform: scale(1.06); filter: brightness(0) invert(1); }
+.logo-tooltip {
+  position: absolute; bottom: -1.8rem; left: 50%; transform: translateX(-50%);
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.52rem;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal);
+  white-space: nowrap; opacity: 0; transition: opacity .2s; pointer-events: none;
+}
+.logo-item:hover .logo-tooltip { opacity: 1; }
 
 /* ── CONTACT ── */
 #contact { border-bottom: 0.5px solid var(--border); }
@@ -281,23 +380,333 @@ footer { background: var(--dark); border-top: 0.5px solid var(--border); }
 @keyframes spin { to { transform: rotate(360deg); } }
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── TABLET (768px - 1024px) ── */
+@media (max-width: 1024px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.5rem; }
+  .hero-headline { font-size: clamp(2.8rem, 6vw, 5rem); }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .stat-cell:nth-child(2) { border-right: none; }
+  .stat-cell:nth-child(3) { border-top: 0.5px solid var(--border); }
+  .work-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-inner { grid-template-columns: 1fr; }
+  .about-left { border-right: none; border-bottom: 0.5px solid var(--border); }
+  .process-grid { grid-template-columns: 1fr; }
+  .process-step { border-right: none; border-bottom: 0.5px solid var(--border); }
+  .process-step:last-child { border-bottom: none; }
+  .services-grid { grid-template-columns: 1fr; }
+  .service-item:nth-child(even) { border-right: none; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .testimonial-item { border-right: none; border-bottom: 0.5px solid var(--border); }
+  .testimonial-item:last-child { border-bottom: none; }
+  .contact-inner { grid-template-columns: 1fr; }
+  .contact-left { border-right: none; border-bottom: 0.5px solid var(--border); }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .settings-grid { grid-template-columns: 1fr; }
+  .directors-grid { grid-template-columns: repeat(2, 1fr); }
+  .director-card:nth-child(2) { border-right: none; }
+  .director-card:nth-child(3) { border-top: 0.5px solid var(--border); }
+  .director-card:nth-child(4) { border-top: 0.5px solid var(--border); }
+}
+
+/* ── MOBILE (up to 768px) ── */
+@media (max-width: 768px) {
+  /* BASE */
+  html { font-size: 100%; }
+
+  /* NAV — hide text links, show logo only with hamburger-style condensed links */
+  nav { padding: 0.85rem 1.2rem; }
+  .nav-logo img { height: 24px; }
+  .nav-logo-text { font-size: 0.72rem; letter-spacing: 0.15em; }
+  .nav-links { gap: 0.6rem; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 2px; }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a { font-size: 0.55rem; letter-spacing: 0.1em; white-space: nowrap; }
+
+  /* HERO */
+  #hero { min-height: 100svh; }
+  .hero-logo-wrap { margin-bottom: 1.4rem; }
+  .hero-logo-wrap img { width: 108px; }
+  .hero-eyebrow { font-size: 0.54rem; letter-spacing: 0.2em; margin-bottom: 0.8rem; }
+  .hero-headline { font-size: clamp(2.4rem, 11vw, 3.4rem); }
+  .hero-sub { font-size: 0.82rem; margin-top: 1rem; max-width: 320px; }
+  .hero-cta-row { flex-direction: column; gap: 0.7rem; width: 100%; max-width: 280px; margin-top: 1.4rem; }
+  .btn-primary, .btn-outline { width: 100%; justify-content: center; padding: 0.85rem 1.4rem; font-size: 0.65rem; }
+  .hero-pills { display: none; }
+  .hero-scroll { bottom: 1.2rem; }
+
+  /* TICKER */
+  .ticker-item { font-size: 0.5rem; }
+
+  /* STATS */
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .stat-cell { padding: 1.4rem 0.8rem; }
+  .stat-cell:nth-child(2) { border-right: none; }
+  .stat-cell:nth-child(3) { border-top: 0.5px solid var(--border); }
+  .stat-cell:nth-child(4) { border-top: 0.5px solid var(--border); border-right: none; }
+  .stat-num { font-size: 2.6rem; }
+  .stat-label { font-size: 0.5rem; letter-spacing: 0.12em; }
+
+  /* SECTION HEADERS */
+  .section-header { padding: 2rem 1.2rem 1.2rem; }
+  .section-eyebrow { font-size: 0.5rem; letter-spacing: 0.24em; }
+  .section-title { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+
+  /* PROCESS */
+  .process-grid { grid-template-columns: 1fr; }
+  .process-step { padding: 1.8rem 1.2rem; border-right: none; border-bottom: 0.5px solid var(--border); }
+  .process-step:last-child { border-bottom: none; }
+  .process-step-title { font-size: 1.3rem; }
+  .process-step-desc { font-size: 0.8rem; }
+
+  /* WORK */
+  .filter-bar { padding: 0 0; gap: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .filter-bar::-webkit-scrollbar { display: none; }
+  .filter-btn { font-size: 0.56rem; padding: 0.8rem 1rem; white-space: nowrap; letter-spacing: 0.08em; }
+  .work-grid { grid-template-columns: 1fr; }
+  .work-card { aspect-ratio: 16/9; }
+  .load-more-wrap { padding: 1.4rem; }
+
+  /* ABOUT */
+  .about-inner { grid-template-columns: 1fr; }
+  .about-left { padding: 2rem 1.2rem; border-right: none; border-bottom: 0.5px solid var(--border); }
+  .about-right { padding: 2rem 1.2rem; }
+  .about-headline { font-size: clamp(1.8rem, 6vw, 2.4rem); }
+  .about-body { font-size: 0.84rem; }
+  .about-right-heading { font-size: 1.7rem; margin-bottom: 1.2rem; }
+  .strength-name { font-size: 0.76rem; }
+  .strength-desc { font-size: 0.72rem; }
+
+  /* FOUNDERS */
+  .founders-grid { grid-template-columns: 1fr; }
+  .founder-card { border-right: none; border-bottom: 0.5px solid var(--border); padding: 2rem 1.2rem; }
+  .founder-card:last-child { border-bottom: none; }
+  .founder-photo-wrap { padding-bottom: 75%; margin-bottom: 1.4rem; }
+  .founder-name { font-size: 1.6rem; }
+  .founder-bio-short { font-size: 0.8rem; }
+  .founder-modal { grid-template-columns: 1fr; max-width: 92vw; }
+  .founder-modal-photo-col { display: none; }
+  .founder-modal-content { padding: 2rem 1.4rem; }
+  .founder-modal-name { font-size: 2rem; }
+
+  /* DIRECTORS */
+  .directors-grid { grid-template-columns: repeat(2, 1fr); }
+  .director-card:nth-child(2n) { border-right: none; }
+  .director-card:nth-child(n+3) { border-top: 0.5px solid var(--border); }
+  .director-card:nth-child(odd) { border-right: 0.5px solid var(--border); }
+  .directors-intro { padding: 0 1.2rem 1.5rem; font-size: 0.82rem; }
+  .director-photo-wrap { padding-bottom: 100%; }
+  .director-name { font-size: 1.1rem; }
+  .director-info { padding: 1rem; }
+
+  /* TESTIMONIALS */
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .testimonial-item { padding: 2rem 1.2rem; border-right: none; border-bottom: 0.5px solid var(--border); }
+  .testimonial-item:last-child { border-bottom: none; }
+  .testimonial-text { font-size: 0.82rem; }
+
+  /* CLIENTS */
+  .client-track { padding: 1.8rem 0; }
+  .logo-item { height: 46px; padding: 0.4rem 0.8rem; }
+  .logo-item img { height: 24px; }
+
+  /* CONTACT */
+  .contact-inner { grid-template-columns: 1fr; }
+  .contact-left { padding: 2rem 1.2rem; border-right: none; border-bottom: 0.5px solid var(--border); }
+  .contact-right { padding: 2rem 1.2rem; }
+  .contact-headline { font-size: clamp(2rem, 8vw, 3rem); }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-input, .form-select, .form-textarea { font-size: 0.9rem; padding: 0.7rem 0.9rem; }
+  .form-submit { padding: 0.85rem 1.8rem; font-size: 0.68rem; }
+
+  /* FOOTER */
+  .footer-top { grid-template-columns: 1fr; padding: 2rem 1.2rem; gap: 2rem; }
+  .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1rem 1.2rem; }
+  .footer-brand p { font-size: 0.76rem; }
+
+  /* WHATSAPP + BACK TO TOP */
+  .whatsapp-btn { bottom: 5rem; right: 1rem; width: 44px; height: 44px; }
+  .back-top { bottom: 1rem; right: 1rem; width: 36px; height: 36px; }
+
+  /* LIGHTBOX */
+  .lightbox-inner { width: 96vw; }
+  .lightbox-close { font-size: 0.6rem; top: -2.2rem; }
+
+  /* CURSOR — hide on mobile */
+  .cursor, .cursor-ring, .play-label { display: none; }
+  body { cursor: auto; }
+  a, button { cursor: pointer; }
+}
+
+/* ── SMALL MOBILE (up to 400px) ── */
+@media (max-width: 400px) {
+  .hero-headline { font-size: 2.1rem; }
+  .nav-links a { font-size: 0.5rem; }
+  .stat-num { font-size: 2.2rem; }
+  .director-name { font-size: 1rem; }
+  .founder-name { font-size: 1.5rem; }
+}
+/* ── FOUNDERS ── */
+#founders { border-bottom: 0.5px solid var(--border); }
+.founders-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+.founder-card {
+  position: relative; padding: 3rem; border-right: 0.5px solid var(--border);
+  cursor: none; overflow: hidden; transition: background .3s;
+}
+.founder-card:last-child { border-right: none; }
+.founder-card:hover { background: var(--teal-dim); }
+.founder-photo-wrap {
+  position: relative; width: 100%; padding-bottom: 100%; margin-bottom: 1.8rem;
+  overflow: hidden;
+}
+.founder-photo-wrap::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,8,8,0.6) 0%, transparent 60%);
+  pointer-events: none; z-index: 1;
+}
+.founder-photo {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; filter: saturate(0.5) brightness(0.85);
+  transition: transform .6s cubic-bezier(.25,.46,.45,.94), filter .4s;
+}
+.founder-card:hover .founder-photo { transform: scale(1.05); filter: saturate(0.7) brightness(0.95); }
+.founder-photo-placeholder {
+  position: absolute; inset: 0;
+  background: var(--card);
+  display: flex; align-items: center; justify-content: center;
+}
+.founder-photo-placeholder::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(-55deg, transparent, transparent 12px, rgba(45,228,200,0.03) 12px, rgba(45,228,200,0.03) 13px);
+}
+.founder-initials {
+  font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem;
+  color: rgba(45,228,200,0.2); letter-spacing: 0.08em; position: relative; z-index: 1;
+}
+.founder-view-btn {
+  position: absolute; bottom: 1rem; right: 1rem; z-index: 2;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.52rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--teal); background: rgba(8,8,8,0.85);
+  border: 0.5px solid var(--teal-border); padding: 0.4rem 0.8rem;
+  opacity: 0; transform: translateY(6px);
+  transition: opacity .25s, transform .25s;
+}
+.founder-card:hover .founder-view-btn { opacity: 1; transform: translateY(0); }
+.founder-role { font-family: 'Barlow Condensed', sans-serif; font-size: 0.58rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.4rem; }
+.founder-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.9rem; letter-spacing: 0.04em; color: var(--white); line-height: 1; margin-bottom: 0.7rem; }
+.founder-bio-short { font-size: 0.8rem; color: var(--dim2); line-height: 1.8; font-weight: 300; }
+
+/* FOUNDER MODAL */
+.founder-modal-bg {
+  position: fixed; inset: 0; background: rgba(0,0,0,0);
+  z-index: 900; display: flex; align-items: center; justify-content: center;
+  pointer-events: none; transition: background .35s, backdrop-filter .35s;
+  backdrop-filter: blur(0px);
+}
+.founder-modal-bg.open { background: rgba(0,0,0,0.92); pointer-events: all; backdrop-filter: blur(16px); }
+.founder-modal {
+  background: var(--dark); border: 0.5px solid var(--border);
+  width: 90vw; max-width: 680px;
+  display: grid; grid-template-columns: 240px 1fr;
+  transform: translateY(30px) scale(0.97); opacity: 0;
+  transition: transform .4s cubic-bezier(.34,1.2,.64,1), opacity .35s;
+  position: relative; overflow: hidden;
+}
+.founder-modal-bg.open .founder-modal { transform: translateY(0) scale(1); opacity: 1; }
+.founder-modal-photo-col { position: relative; overflow: hidden; }
+.founder-modal-photo {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(0.5);
+}
+.founder-modal-photo-placeholder {
+  width: 100%; height: 100%; min-height: 320px;
+  background: var(--card); display: flex; align-items: center; justify-content: center;
+}
+.founder-modal-photo-placeholder::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(-55deg, transparent, transparent 12px, rgba(45,228,200,0.04) 12px, rgba(45,228,200,0.04) 13px);
+}
+.founder-modal-initials { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: rgba(45,228,200,0.25); position: relative; z-index: 1; }
+.founder-modal-teal-bar { position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--teal); }
+.founder-modal-content { padding: 2.5rem 2rem; display: flex; flex-direction: column; }
+.founder-modal-role { font-family: 'Barlow Condensed', sans-serif; font-size: 0.58rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.5rem; }
+.founder-modal-name { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; letter-spacing: 0.04em; color: var(--white); line-height: 1; margin-bottom: 1.4rem; }
+.founder-modal-divider { width: 28px; height: 1px; background: var(--teal); opacity: 0.5; margin-bottom: 1.4rem; }
+.founder-modal-bio { font-size: 0.84rem; color: var(--dim2); line-height: 1.95; font-weight: 300; flex: 1; }
+.founder-modal-close {
+  position: absolute; top: 1rem; right: 1rem;
+  background: none; border: none; color: var(--dim2);
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.62rem;
+  letter-spacing: 0.2em; text-transform: uppercase; cursor: none;
+  transition: color .2s;
+}
+.founder-modal-close:hover { color: var(--teal); }
+
+/* ── DIRECTORS CLUB ── */
+#directors { border-bottom: 0.5px solid var(--border); }
+.directors-intro { padding: 0 3rem 2rem; font-size: 0.88rem; color: var(--dim2); font-weight: 300; max-width: 560px; line-height: 1.8; }
+.directors-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+.director-card {
+  position: relative; border-right: 0.5px solid var(--border);
+  overflow: hidden; cursor: none;
+}
+.director-card:last-child { border-right: none; }
+.director-photo-wrap { position: relative; padding-bottom: 120%; overflow: hidden; }
+.director-photo {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; filter: saturate(0.3) brightness(0.7);
+  transition: transform .6s cubic-bezier(.25,.46,.45,.94), filter .4s;
+}
+.director-card:hover .director-photo { transform: scale(1.08); filter: saturate(0.6) brightness(0.5); }
+.director-photo-placeholder {
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, #131313 0%, #0d0d0d 100%);
+  display: flex; align-items: center; justify-content: center;
+}
+.director-photo-placeholder::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(-55deg, transparent, transparent 14px, rgba(45,228,200,0.025) 14px, rgba(45,228,200,0.025) 15px);
+}
+.director-initials-lg { font-family: 'Bebas Neue', sans-serif; font-size: 4.5rem; color: rgba(45,228,200,0.12); position: relative; z-index: 1; letter-spacing: 0.06em; }
+.director-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,8,8,0.98) 0%, rgba(8,8,8,0.2) 55%, transparent 100%);
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 1.4rem;
+  opacity: 0; transition: opacity .35s;
+}
+.director-card:hover .director-overlay { opacity: 1; }
+.director-info { padding: 1.4rem; border-top: 0.5px solid var(--border); transition: background .3s; }
+.director-card:hover .director-info { background: var(--teal-dim); }
+.director-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.04em; color: var(--white); line-height: 1.1; margin-bottom: 0.3rem; }
+.director-known { font-family: 'Barlow Condensed', sans-serif; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); }
+.director-overlay-tag { font-family: 'Barlow Condensed', sans-serif; font-size: 0.54rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.5rem; }
+.director-overlay-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--white); line-height: 1; }
+
+/* Responsive handled in main media queries above */
+
 </style>
 </head>
 <body>
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
+<div class="play-label" id="playLabel">
+  <svg width="10" height="10" viewBox="0 0 24 24" fill="#2de4c8"><polygon points="5,3 19,12 5,21"/></svg>
+  PLAY
+</div>
 
 <!-- NAV -->
 <nav id="mainNav">
   <a href="#hero" class="nav-logo">
-    <img src="cinereaLogo.png" alt="Cinerea Films" onerror="this.style.display='none'">
+    <img src="https://ik.imagekit.io/tnf/cinereaLogo.png" alt="Cinerea Films" onerror="this.style.display='none'">
     <span class="nav-logo-text">Cinerea Films</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#work" data-section="work">Work</a></li>
     <li><a href="#process" data-section="process">Process</a></li>
+    <li><a href="#work" data-section="work">Work</a></li>
     <li><a href="#about" data-section="about">About</a></li>
+    <li><a href="#founders" data-section="founders">Team</a></li>
     <li><a href="#clients" data-section="clients">Clients</a></li>
     <li><a href="#contact" data-section="contact">Contact</a></li>
   </ul>
@@ -309,9 +718,9 @@ footer { background: var(--dark); border-top: 0.5px solid var(--border); }
   <div class="hero-glow"></div>
   <div class="hero-content">
     <div class="hero-logo-wrap">
-      <img src="cinereaLogo.png" alt="Cinerea Films" style="width:112px;height:auto" onerror="this.style.display='none'">
+      <img src="https://ik.imagekit.io/tnf/cinereaLogo.png" alt="Cinerea Films" style="width:148px;height:auto" onerror="this.style.display='none'">
     </div>
-    <p class="hero-eyebrow">Mumbai · Est. 2014</p>
+    <p class="hero-eyebrow">Mumbai · Est. 2016</p>
     <h1 class="hero-headline" id="heroHeadline">
       <span class="line1">A Decade of</span><br>
       <em><span class="line2">Crafted Storytelling</span></em>
@@ -350,33 +759,10 @@ footer { background: var(--dark); border-top: 0.5px solid var(--border); }
 <!-- STATS -->
 <div class="stats-bar">
   <div class="stat-cell reveal"><div class="stat-num" data-target="10" data-suffix="+">0</div><div class="stat-label">Years of Experience</div></div>
-  <div class="stat-cell reveal" style="transition-delay:.1s"><div class="stat-num" data-target="59" data-suffix="+">0</div><div class="stat-label">Films Delivered</div></div>
-  <div class="stat-cell reveal" style="transition-delay:.2s"><div class="stat-num" data-target="25" data-suffix="+">0</div><div class="stat-label">Brand Partners</div></div>
+  <div class="stat-cell reveal" style="transition-delay:.1s"><div class="stat-num" data-target="132" data-suffix="+">0</div><div class="stat-label">Films Delivered</div></div>
+  <div class="stat-cell reveal" style="transition-delay:.2s"><div class="stat-num" data-target="40" data-suffix="+">0</div><div class="stat-label">Brand Partners</div></div>
   <div class="stat-cell reveal" style="transition-delay:.3s"><div class="stat-num" data-target="6" data-suffix="">0</div><div class="stat-label">Content Formats</div></div>
 </div>
-
-<!-- WORK -->
-<section id="work">
-  <div class="section-header reveal">
-    <p class="section-eyebrow">Selected Work</p>
-    <h2 class="section-title">Our Portfolio</h2>
-  </div>
-  <div class="filter-bar">
-    <button class="filter-btn active" data-filter="all">All Work</button>
-    <button class="filter-btn" data-filter="tvc">TVC</button>
-    <button class="filter-btn" data-filter="brand">Brand Films</button>
-    <button class="filter-btn" data-filter="shortfilm">Short Films</button>
-    <button class="filter-btn" data-filter="digital">Digital Content</button>
-    <button class="filter-btn" data-filter="campaign">Campaigns</button>
-    <button class="filter-btn" data-filter="documentary">Documentary</button>
-  </div>
-  <div class="work-grid" id="workGrid">
-    <div class="grid-loading"><div class="spin" style="width:30px;height:30px"></div><div class="grid-loading-text">Loading portfolio...</div></div>
-  </div>
-  <div class="load-more-wrap" id="loadMoreWrap" style="display:none">
-    <button class="load-more-btn" id="loadMoreBtn">Load More</button>
-  </div>
-</section>
 
 <!-- PROCESS -->
 <section id="process">
@@ -412,6 +798,31 @@ footer { background: var(--dark); border-top: 0.5px solid var(--border); }
   </div>
 </section>
 
+<!-- WORK -->
+<section id="work">
+  <div class="section-header reveal">
+    <p class="section-eyebrow">Selected Work</p>
+    <h2 class="section-title">Our Portfolio</h2>
+  </div>
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All Work</button>
+    <button class="filter-btn" data-filter="tvc">Brand Campaign & TVC</button>
+    <button class="filter-btn" data-filter="digital">Digital Films</button>
+    <button class="filter-btn" data-filter="product">Product Videos</button>
+    <button class="filter-btn" data-filter="thumbstopper">Thumbstopper Videos</button>
+    <button class="filter-btn" data-filter="animation">3D Animation</button>
+    <button class="filter-btn" data-filter="music">Music Videos</button>
+    <button class="filter-btn" data-filter="content">Digital Content</button>
+    <button class="filter-btn" data-filter="stills">Stills & Social</button>
+  </div>
+  <div class="work-grid" id="workGrid">
+    <div class="grid-loading"><div class="spin" style="width:30px;height:30px"></div><div class="grid-loading-text">Loading portfolio...</div></div>
+  </div>
+  <div class="load-more-wrap" id="loadMoreWrap" style="display:none">
+    <button class="load-more-btn" id="loadMoreBtn">Load More</button>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about">
   <div class="section-header reveal">
@@ -427,29 +838,144 @@ footer { background: var(--dark); border-top: 0.5px solid var(--border); }
       </div>
     </div>
     <div class="about-right reveal" style="transition-delay:.15s">
-      <div class="about-right-label">Production Strengths</div>
+      <div class="about-right-label">Our Services</div>
+      <div class="about-right-heading">What We Do</div>
       <div class="strength-list">
-        <div class="strength-item"><div class="strength-num">01</div><div><div class="strength-name">Pre-Production Planning</div><div class="strength-desc">Structured approach to scripting, casting, location, and logistics</div></div></div>
-        <div class="strength-item"><div class="strength-num">02</div><div><div class="strength-name">Accountable On-Set Execution</div><div class="strength-desc">Lean, efficient crew and shoot structures built for precision</div></div></div>
-        <div class="strength-item"><div class="strength-num">03</div><div><div class="strength-name">Budget Optimisation</div><div class="strength-desc">Premium output without compromising cost discipline</div></div></div>
-        <div class="strength-item"><div class="strength-num">04</div><div><div class="strength-name">Seamless Post-Production</div><div class="strength-desc">End-to-end coordination from shoot to final delivery</div></div></div>
-        <div class="strength-item"><div class="strength-num">05</div><div><div class="strength-name">Brand Communication Clarity</div><div class="strength-desc">Deep understanding of brand objectives and audience platforms</div></div></div>
+        <div class="strength-item"><div class="strength-num">01</div><div><div class="strength-name">Brand & Product Films</div><div class="strength-desc">High-quality films that articulate brand values and product stories — built for longevity and multi-platform use.</div></div></div>
+        <div class="strength-item"><div class="strength-num">02</div><div><div class="strength-name">Commercials</div><div class="strength-desc">Multi-format TVCs for TV, digital, theatre and radio — designed for scale, efficiency, and platform-first usage.</div></div></div>
+        <div class="strength-item"><div class="strength-num">03</div><div><div class="strength-name">Marketing Campaigns</div><div class="strength-desc">Integrated campaign assets across film, performance, influencer, and ATL–BTL — aligned to brand objectives.</div></div></div>
+        <div class="strength-item"><div class="strength-num">04</div><div><div class="strength-name">Entertainment & Long-Form</div><div class="strength-desc">Feature films, short films, OTT series, and YouTube-led IP — executed with cinematic craft.</div></div></div>
+        <div class="strength-item"><div class="strength-num">05</div><div><div class="strength-name">Digital Content</div><div class="strength-desc">Social-first content, reels, and always-on digital campaigns built for platform-native consumption.</div></div></div>
       </div>
     </div>
   </div>
 </section>
-
-<!-- SERVICES -->
-<section id="services">
+<!-- FOUNDERS -->
+<section id="founders">
   <div class="section-header reveal">
-    <p class="section-eyebrow">What We Do</p>
-    <h2 class="section-title">Services</h2>
+    <p class="section-eyebrow">The People Behind It</p>
+    <h2 class="section-title">Our Founders</h2>
   </div>
-  <div class="service-row" style="transition-delay:.05s"><div class="service-row-left"><div class="service-num">01</div><div class="service-name">Brand & Product Films</div></div><div class="service-desc">High-quality films that articulate brand values and product stories with clarity and consistency — built for longevity and multi-platform use.</div></div>
-  <div class="service-row" style="transition-delay:.1s"><div class="service-row-left"><div class="service-num">02</div><div class="service-name">Commercials</div></div><div class="service-desc">Multi-format commercials for TV, digital, theatre and radio — designed for scale, efficiency, and platform-first usage.</div></div>
-  <div class="service-row" style="transition-delay:.15s"><div class="service-row-left"><div class="service-num">03</div><div class="service-name">Marketing Campaigns</div></div><div class="service-desc">Integrated campaign assets across film, performance, influencer, and ATL–BTL — aligned to brand objectives and audience platforms.</div></div>
-  <div class="service-row" style="transition-delay:.2s"><div class="service-row-left"><div class="service-num">04</div><div class="service-name">Entertainment & Long-Form</div></div><div class="service-desc">Feature films, short films, OTT series, and YouTube-led IP — executed with cinematic craft and production discipline.</div></div>
-  <div class="service-row" style="transition-delay:.25s"><div class="service-row-left"><div class="service-num">05</div><div class="service-name">Digital Content</div></div><div class="service-desc">Social-first content, reels, and always-on digital campaigns built for platform-native consumption and brand consistency.</div></div>
+  <div class="founders-grid">
+
+    <div class="founder-card reveal" data-founder="rohit">
+      <div class="founder-photo-wrap">
+        <div class="founder-photo-placeholder"><span class="founder-initials">RM</span></div>
+        <div class="founder-view-btn">View Profile</div>
+      </div>
+      <div class="founder-role">Director & Co-Founder</div>
+      <div class="founder-name">Rohit Mhatre</div>
+      <div class="founder-bio-short">Storyteller at heart, producer by discipline. Rohit leads creative direction and client strategy at Cinerea.</div>
+    </div>
+
+    <div class="founder-card reveal" style="transition-delay:.12s" data-founder="sumukh">
+      <div class="founder-photo-wrap">
+        <div class="founder-photo-placeholder"><span class="founder-initials">ST</span></div>
+        <div class="founder-view-btn">View Profile</div>
+      </div>
+      <div class="founder-role">Executive Producer & Co-Founder</div>
+      <div class="founder-name">Sumukh Tawde</div>
+      <div class="founder-bio-short">The engine behind every production. Sumukh architects the systems that keep quality consistent and timelines tight.</div>
+    </div>
+
+    <div class="founder-card reveal" style="transition-delay:.24s" data-founder="rohan">
+      <div class="founder-photo-wrap">
+        <div class="founder-photo-placeholder"><span class="founder-initials">RP</span></div>
+        <div class="founder-view-btn">View Profile</div>
+      </div>
+      <div class="founder-role">Creative Lead & Co-Founder</div>
+      <div class="founder-name">Rohan Patil</div>
+      <div class="founder-bio-short">Frames the visual language of every project. Rohan bridges craft and communication with a decade of on-set expertise.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOUNDER MODAL -->
+<div class="founder-modal-bg" id="founderModalBg">
+  <div class="founder-modal" id="founderModal">
+    <div class="founder-modal-photo-col">
+      <div class="founder-modal-photo-placeholder" id="founderModalPhoto">
+        <span class="founder-modal-initials" id="founderModalInitials">RM</span>
+      </div>
+      <div class="founder-modal-teal-bar"></div>
+    </div>
+    <div class="founder-modal-content">
+      <div class="founder-modal-role" id="founderModalRole">Director & Co-Founder</div>
+      <div class="founder-modal-name" id="founderModalName">Rohit Mhatre</div>
+      <div class="founder-modal-divider"></div>
+      <div class="founder-modal-bio" id="founderModalBio"></div>
+      <button class="founder-modal-close" id="founderModalClose">✕ &nbsp;Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- DIRECTORS CLUB -->
+<section id="directors">
+  <div class="section-header reveal">
+    <p class="section-eyebrow">Collaborators</p>
+    <h2 class="section-title">Director's Club</h2>
+  </div>
+  <p class="directors-intro reveal">A curated roster of directors we've had the privilege of working alongside — each bringing a distinct visual sensibility and cinematic command to the frame.</p>
+  <div class="directors-grid">
+
+    <div class="director-card reveal">
+      <div class="director-photo-wrap">
+        <div class="director-photo-placeholder"><span class="director-initials-lg">AK</span></div>
+        <div class="director-overlay">
+          <div class="director-overlay-tag">Known for</div>
+          <div class="director-overlay-name">Automotive · Lifestyle</div>
+        </div>
+      </div>
+      <div class="director-info">
+        <div class="director-name">Arjun Kapoor</div>
+        <div class="director-known">Automotive · Lifestyle</div>
+      </div>
+    </div>
+
+    <div class="director-card reveal" style="transition-delay:.08s">
+      <div class="director-photo-wrap">
+        <div class="director-photo-placeholder"><span class="director-initials-lg">PM</span></div>
+        <div class="director-overlay">
+          <div class="director-overlay-tag">Known for</div>
+          <div class="director-overlay-name">Brand Films · FMCG</div>
+        </div>
+      </div>
+      <div class="director-info">
+        <div class="director-name">Priya Mehta</div>
+        <div class="director-known">Brand Films · FMCG</div>
+      </div>
+    </div>
+
+    <div class="director-card reveal" style="transition-delay:.16s">
+      <div class="director-photo-wrap">
+        <div class="director-photo-placeholder"><span class="director-initials-lg">VS</span></div>
+        <div class="director-overlay">
+          <div class="director-overlay-tag">Known for</div>
+          <div class="director-overlay-name">Digital · Social</div>
+        </div>
+      </div>
+      <div class="director-info">
+        <div class="director-name">Vikram Shah</div>
+        <div class="director-known">Digital · Social</div>
+      </div>
+    </div>
+
+    <div class="director-card reveal" style="transition-delay:.24s">
+      <div class="director-photo-wrap">
+        <div class="director-photo-placeholder"><span class="director-initials-lg">NJ</span></div>
+        <div class="director-overlay">
+          <div class="director-overlay-tag">Known for</div>
+          <div class="director-overlay-name">Long-Form · OTT</div>
+        </div>
+      </div>
+      <div class="director-info">
+        <div class="director-name">Nisha Joshi</div>
+        <div class="director-known">Long-Form · OTT</div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <!-- TESTIMONIALS -->
@@ -490,63 +1016,13 @@ footer { background: var(--dark); border-top: 0.5px solid var(--border); }
     <h2 class="section-title">Brands & Partners</h2>
   </div>
   <div class="client-track">
-    <div class="client-marquee">
-      <span class="client-name">Honda</span><span class="client-dot">·</span>
-      <span class="client-name">Tata Trusts</span><span class="client-dot">·</span>
-      <span class="client-name">Mahindra</span><span class="client-dot">·</span>
-      <span class="client-name">Maruti Suzuki</span><span class="client-dot">·</span>
-      <span class="client-name">ITC Limited</span><span class="client-dot">·</span>
-      <span class="client-name">Reliance Digital</span><span class="client-dot">·</span>
-      <span class="client-name">Raymond</span><span class="client-dot">·</span>
-      <span class="client-name">Fortune Oils</span><span class="client-dot">·</span>
-      <span class="client-name">Vivo</span><span class="client-dot">·</span>
-      <span class="client-name">Ola</span><span class="client-dot">·</span>
-      <span class="client-name">Big Bazaar</span><span class="client-dot">·</span>
-      <span class="client-name">Herbalife</span><span class="client-dot">·</span>
-      <span class="client-name">Honda</span><span class="client-dot">·</span>
-      <span class="client-name">Tata Trusts</span><span class="client-dot">·</span>
-      <span class="client-name">Mahindra</span><span class="client-dot">·</span>
-      <span class="client-name">Maruti Suzuki</span><span class="client-dot">·</span>
-      <span class="client-name">ITC Limited</span><span class="client-dot">·</span>
-      <span class="client-name">Reliance Digital</span><span class="client-dot">·</span>
-      <span class="client-name">Raymond</span><span class="client-dot">·</span>
-      <span class="client-name">Fortune Oils</span><span class="client-dot">·</span>
-      <span class="client-name">Vivo</span><span class="client-dot">·</span>
-      <span class="client-name">Ola</span><span class="client-dot">·</span>
-      <span class="client-name">Big Bazaar</span><span class="client-dot">·</span>
-      <span class="client-name">Herbalife</span><span class="client-dot">·</span>
+    <div class="client-marquee " style="animation-duration:60s">
+      <div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Reliance%20Digital.png" alt="Reliance Digital" loading="lazy"><span class="logo-tooltip">Reliance Digital</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Honda.webp" alt="Honda" loading="lazy"><span class="logo-tooltip">Honda</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/mahindra-rise-vector-logo.svg" alt="Mahindra" loading="lazy"><span class="logo-tooltip">Mahindra</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/ITC%20Limited.svg" alt="ITC Limited" loading="lazy"><span class="logo-tooltip">ITC Limited</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Maruti%20Suzuki.png" alt="Maruti Suzuki" loading="lazy"><span class="logo-tooltip">Maruti Suzuki</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/tata-trusts-logo-vector.svg" alt="Tata Trusts" loading="lazy"><span class="logo-tooltip">Tata Trusts</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Raymond.svg" alt="Raymond" loading="lazy"><span class="logo-tooltip">Raymond</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Sterling_logo.png" alt="Sterling" loading="lazy"><span class="logo-tooltip">Sterling</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Saregama_logo.png" alt="Saregama" loading="lazy"><span class="logo-tooltip">Saregama</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Ola.svg" alt="Ola" loading="lazy"><span class="logo-tooltip">Ola</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/BPL.avif" alt="BPL" loading="lazy"><span class="logo-tooltip">BPL</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Haier.svg" alt="Haier" loading="lazy"><span class="logo-tooltip">Haier</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Herbalife%20Nutrition.png" alt="Herbalife" loading="lazy"><span class="logo-tooltip">Herbalife</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Vivo_logo_2019.svg" alt="Vivo" loading="lazy"><span class="logo-tooltip">Vivo</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/syngenta.png" alt="Syngenta" loading="lazy"><span class="logo-tooltip">Syngenta</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Reliance%20Digital.png" alt="Reliance Digital" loading="lazy"><span class="logo-tooltip">Reliance Digital</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Honda.webp" alt="Honda" loading="lazy"><span class="logo-tooltip">Honda</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/mahindra-rise-vector-logo.svg" alt="Mahindra" loading="lazy"><span class="logo-tooltip">Mahindra</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/ITC%20Limited.svg" alt="ITC Limited" loading="lazy"><span class="logo-tooltip">ITC Limited</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Maruti%20Suzuki.png" alt="Maruti Suzuki" loading="lazy"><span class="logo-tooltip">Maruti Suzuki</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/tata-trusts-logo-vector.svg" alt="Tata Trusts" loading="lazy"><span class="logo-tooltip">Tata Trusts</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Raymond.svg" alt="Raymond" loading="lazy"><span class="logo-tooltip">Raymond</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Sterling_logo.png" alt="Sterling" loading="lazy"><span class="logo-tooltip">Sterling</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Saregama_logo.png" alt="Saregama" loading="lazy"><span class="logo-tooltip">Saregama</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Ola.svg" alt="Ola" loading="lazy"><span class="logo-tooltip">Ola</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/BPL.avif" alt="BPL" loading="lazy"><span class="logo-tooltip">BPL</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Haier.svg" alt="Haier" loading="lazy"><span class="logo-tooltip">Haier</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Herbalife%20Nutrition.png" alt="Herbalife" loading="lazy"><span class="logo-tooltip">Herbalife</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Vivo_logo_2019.svg" alt="Vivo" loading="lazy"><span class="logo-tooltip">Vivo</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/syngenta.png" alt="Syngenta" loading="lazy"><span class="logo-tooltip">Syngenta</span></div>
     </div>
   </div>
   <div class="client-track">
-    <div class="client-marquee reverse">
-      <span class="client-name">Haier</span><span class="client-dot">·</span>
-      <span class="client-name">Sterling Holidays</span><span class="client-dot">·</span>
-      <span class="client-name">Syngenta</span><span class="client-dot">·</span>
-      <span class="client-name">Men of Platinum</span><span class="client-dot">·</span>
-      <span class="client-name">Saregama</span><span class="client-dot">·</span>
-      <span class="client-name">Welspun Group</span><span class="client-dot">·</span>
-      <span class="client-name">Kalpataru</span><span class="client-dot">·</span>
-      <span class="client-name">Sugee</span><span class="client-dot">·</span>
-      <span class="client-name">BPL</span><span class="client-dot">·</span>
-      <span class="client-name">Pure Roots</span><span class="client-dot">·</span>
-      <span class="client-name">Spaces</span><span class="client-dot">·</span>
-      <span class="client-name">Paradiso Bay</span><span class="client-dot">·</span>
-      <span class="client-name">Sugar Box</span><span class="client-dot">·</span>
-      <span class="client-name">Sunny</span><span class="client-dot">·</span>
-      <span class="client-name">Haier</span><span class="client-dot">·</span>
-      <span class="client-name">Sterling Holidays</span><span class="client-dot">·</span>
-      <span class="client-name">Syngenta</span><span class="client-dot">·</span>
-      <span class="client-name">Men of Platinum</span><span class="client-dot">·</span>
-      <span class="client-name">Saregama</span><span class="client-dot">·</span>
-      <span class="client-name">Welspun Group</span><span class="client-dot">·</span>
-      <span class="client-name">Kalpataru</span><span class="client-dot">·</span>
-      <span class="client-name">Sugee</span><span class="client-dot">·</span>
-      <span class="client-name">BPL</span><span class="client-dot">·</span>
-      <span class="client-name">Pure Roots</span><span class="client-dot">·</span>
-      <span class="client-name">Spaces</span><span class="client-dot">·</span>
-      <span class="client-name">Paradiso Bay</span><span class="client-dot">·</span>
-      <span class="client-name">Sugar Box</span><span class="client-dot">·</span>
-      <span class="client-name">Sunny</span><span class="client-dot">·</span>
+    <div class="client-marquee reverse" style="animation-duration:70s">
+      <div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Men%20Of%20Platinum.png" alt="Men of Platinum" loading="lazy"><span class="logo-tooltip">Men of Platinum</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/wel-logo.png" alt="Welspun" loading="lazy"><span class="logo-tooltip">Welspun</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Kalpataru.png" alt="Kalpataru" loading="lazy"><span class="logo-tooltip">Kalpataru</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Big%20Bazaar.webp" alt="Big Bazaar" loading="lazy"><span class="logo-tooltip">Big Bazaar</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/SPACES_LOGO-768x272.jpg" alt="Spaces" loading="lazy"><span class="logo-tooltip">Spaces</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/LG.jpg" alt="LG" loading="lazy"><span class="logo-tooltip">LG</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Sugar%20Box.jpg" alt="Sugar Box" loading="lazy"><span class="logo-tooltip">Sugar Box</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Pure%20Roots%20Herbals.png" alt="Pure Roots" loading="lazy"><span class="logo-tooltip">Pure Roots</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Sugee%20Logo_Register_1-08.avif" alt="Sugee" loading="lazy"><span class="logo-tooltip">Sugee</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/logo-fortune-1.webp" alt="Fortune" loading="lazy"><span class="logo-tooltip">Fortune</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Sunny-Cooking-Oil.png" alt="Sunny" loading="lazy"><span class="logo-tooltip">Sunny</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Paradiso%20Bay.webp" alt="Paradiso Bay" loading="lazy"><span class="logo-tooltip">Paradiso Bay</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Maruti%20Suzuki%20Driving%20School.png" alt="Maruti Suzuki DS" loading="lazy"><span class="logo-tooltip">Maruti Suzuki DS</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/honda-logo.png" alt="Honda Bikes" loading="lazy"><span class="logo-tooltip">Honda Bikes</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Men%20Of%20Platinum.png" alt="Men of Platinum" loading="lazy"><span class="logo-tooltip">Men of Platinum</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/wel-logo.png" alt="Welspun" loading="lazy"><span class="logo-tooltip">Welspun</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Kalpataru.png" alt="Kalpataru" loading="lazy"><span class="logo-tooltip">Kalpataru</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Big%20Bazaar.webp" alt="Big Bazaar" loading="lazy"><span class="logo-tooltip">Big Bazaar</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/SPACES_LOGO-768x272.jpg" alt="Spaces" loading="lazy"><span class="logo-tooltip">Spaces</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/LG.jpg" alt="LG" loading="lazy"><span class="logo-tooltip">LG</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Sugar%20Box.jpg" alt="Sugar Box" loading="lazy"><span class="logo-tooltip">Sugar Box</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Pure%20Roots%20Herbals.png" alt="Pure Roots" loading="lazy"><span class="logo-tooltip">Pure Roots</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Sugee%20Logo_Register_1-08.avif" alt="Sugee" loading="lazy"><span class="logo-tooltip">Sugee</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/logo-fortune-1.webp" alt="Fortune" loading="lazy"><span class="logo-tooltip">Fortune</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Sunny-Cooking-Oil.png" alt="Sunny" loading="lazy"><span class="logo-tooltip">Sunny</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Paradiso%20Bay.webp" alt="Paradiso Bay" loading="lazy"><span class="logo-tooltip">Paradiso Bay</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/Maruti%20Suzuki%20Driving%20School.png" alt="Maruti Suzuki DS" loading="lazy"><span class="logo-tooltip">Maruti Suzuki DS</span></div><div class="logo-item"><img src="https://ik.imagekit.io/tnf/Cinerea%20Brand%20Logos/honda-logo.png" alt="Honda Bikes" loading="lazy"><span class="logo-tooltip">Honda Bikes</span></div>
     </div>
   </div>
 </section>
@@ -567,7 +1043,7 @@ footer { background: var(--dark); border-top: 0.5px solid var(--border); }
         </div>
         <div class="contact-item">
           <div class="contact-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2de4c8" stroke-width="1.5" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-          <div><div class="contact-label">Email</div><div class="contact-val">hello@cinereafilms.in</div></div>
+          <div><div class="contact-label">Email</div><div class="contact-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="caa2afa6a6a58aa9a3a4afb8afabaca3a6a7b9e4a3a4">[email&#160;protected]</a></div></div>
         </div>
         <div class="contact-item">
           <div class="contact-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2de4c8" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
@@ -633,23 +1109,19 @@ footer { background: var(--dark); border-top: 0.5px solid var(--border); }
       <p>A decade of production-led creative for brands that value quality and efficiency.</p>
       <div class="social-links">
         <!-- Instagram -->
-        <a href="#" class="social-link" aria-label="Instagram">
+        <a href="https://www.instagram.com/cinereafilms/" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
           <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         </a>
-        <!-- YouTube -->
-        <a href="#" class="social-link" aria-label="YouTube">
-          <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-        </a>
         <!-- Facebook -->
-        <a href="#" class="social-link" aria-label="Facebook">
+        <a href="https://www.facebook.com/cinereafilms" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">
           <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
         </a>
-        <!-- X/Twitter -->
-        <a href="#" class="social-link" aria-label="X">
-          <svg width="15" height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.259 5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/@CinereaFilms" class="social-link" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
         </a>
         <!-- Vimeo -->
-        <a href="#" class="social-link" aria-label="Vimeo">
+        <a href="https://vimeo.com/cinereafilms" class="social-link" target="_blank" rel="noopener" aria-label="Vimeo">
           <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.977 6.416c-.105 2.338-1.739 5.543-4.894 9.609-3.268 4.247-6.026 6.37-8.29 6.37-1.409 0-2.578-1.294-3.553-3.881L5.322 11.4C4.603 8.816 3.834 7.522 3.01 7.522c-.179 0-.806.378-1.881 1.132L0 7.197c1.185-1.044 2.351-2.084 3.501-3.128C5.08 2.701 6.266 1.984 7.055 1.91c1.867-.18 3.016 1.1 3.447 3.838.465 2.953.789 4.789.971 5.507.539 2.45 1.131 3.674 1.776 3.674.502 0 1.256-.796 2.265-2.385 1.004-1.589 1.54-2.797 1.612-3.628.144-1.371-.395-2.061-1.612-2.061-.574 0-1.167.121-1.777.391 1.186-3.868 3.434-5.757 6.762-5.637 2.473.06 3.628 1.664 3.478 4.807z"/></svg>
         </a>
       </div>
@@ -657,10 +1129,10 @@ footer { background: var(--dark); border-top: 0.5px solid var(--border); }
     <div>
       <div class="footer-nav-title">Navigate</div>
       <div class="footer-nav-links">
-        <a href="#work">Work</a>
         <a href="#process">Process</a>
+        <a href="#work">Work</a>
         <a href="#about">About</a>
-        <a href="#services">Services</a>
+        <a href="#founders">Team</a>
         <a href="#clients">Clients</a>
         <a href="#contact">Contact</a>
       </div>
@@ -673,7 +1145,7 @@ footer { background: var(--dark); border-top: 0.5px solid var(--border); }
       </div>
       <div class="footer-contact-item">
         <div class="footer-contact-label">Email</div>
-        <div class="footer-contact-val">hello@cinereafilms.in</div>
+        <div class="footer-contact-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="167e737a7a7956757f7873647377707f7a7b65387f78">[email&#160;protected]</a></div>
       </div>
       <div class="footer-contact-item">
         <div class="footer-contact-label">Location</div>
@@ -706,33 +1178,37 @@ footer { background: var(--dark); border-top: 0.5px solid var(--border); }
   </div>
 </div>
 
-<script>
-// ── DATA ──
-const categoryMap = {
-  602307094:"tvc",924530417:"tvc",963170632:"tvc",883911115:"tvc",924531615:"tvc",
-  810824356:"tvc",820385927:"tvc",790279616:"tvc",594591411:"tvc",
-  737501736:"brand",795822777:"brand",713257402:"brand",602317290:"brand",602300566:"brand",
-  791537409:"brand",713257157:"brand",594598563:"brand",602317398:"brand",
-  602304930:"shortfilm",924513333:"shortfilm",796952463:"shortfilm",639869290:"shortfilm",
-  798079989:"shortfilm",602315690:"shortfilm",713257476:"shortfilm",879072370:"shortfilm",641781524:"shortfilm",
-  713257236:"digital",766337092:"digital",1138762448:"digital",713256908:"digital",
-  686608375:"digital",602295301:"digital",602297254:"digital",602315594:"digital",686320426:"digital",
-  713257331:"campaign",639454878:"campaign",1007932263:"campaign",924529259:"campaign",
-  713256527:"campaign",790703335:"campaign",747369652:"campaign",791537036:"campaign",602295469:"campaign",
-  1080502861:"documentary",602307721:"documentary",1034722270:"documentary",713256673:"documentary",
-  643851656:"documentary",810824402:"documentary",772771416:"documentary",602319236:"documentary",
-  1146638319:"documentary",1022762976:"documentary",644210017:"documentary",602317622:"documentary",
-  643851769:"documentary",764896221:"documentary"
-};
-const videoIds = [602307094,924530417,963170632,883911115,924531615,810824356,820385927,790279616,594591411,737501736,795822777,713257402,602317290,602300566,791537409,713257157,594598563,602317398,602304930,924513333,796952463,639869290,798079989,602315690,713257476,879072370,641781524,713257236,766337092,1138762448,713256908,686608375,602295301,602297254,602315594,686320426,713257331,639454878,1007932263,924529259,713256527,790703335,747369652,791537036,602295469,1080502861,602307721,1034722270,713256673,643851656,810824402,772771416,602319236,1146638319,1022762976,644210017,602317622,643851769,764896221];
-const catLabels = { tvc:'TVC', brand:'Brand Film', shortfilm:'Short Film', digital:'Digital Content', campaign:'Campaign', documentary:'Documentary' };
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module">
+import { initializeApp }           from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection,
+         query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// ── CURSOR ──
+const firebaseConfig = {
+  apiKey:            "AIzaSyB8OWK8fM3qnN0PLqo84VBFxMLtiv757GI",
+  authDomain:        "cinerea-films.firebaseapp.com",
+  projectId:         "cinerea-films",
+  storageBucket:     "cinerea-films.firebasestorage.app",
+  messagingSenderId: "989966385870",
+  appId:             "1:989966385870:web:02bbda51475ba782cec69f"
+};
+
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+
+const catLabels = {
+  tvc: 'Brand Campaign & TVC', product: 'Product Videos', digital: 'Digital Films',
+  animation: '3D Animation', thumbstopper: 'Thumbstopper Videos', music: 'Music Videos',
+  content: 'Digital Content', stills: 'Stills & Social Content Production'
+};
+
+// CURSOR
 const cursor = document.getElementById('cursor');
 const ring   = document.getElementById('cursorRing');
+const playLabel = document.getElementById('playLabel');
 document.addEventListener('mousemove', e => {
   cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
   ring.style.left   = e.clientX + 'px'; ring.style.top   = e.clientY + 'px';
+  playLabel.style.left = e.clientX + 'px'; playLabel.style.top = (e.clientY + 24) + 'px';
 });
 function setCursor(state) {
   cursor.className = 'cursor ' + state;
@@ -743,7 +1219,7 @@ document.querySelectorAll('a, button, .filter-btn, .load-more-btn, .form-submit'
   el.addEventListener('mouseleave', () => setCursor(''));
 });
 
-// ── HERO WORD ANIMATION ──
+// HERO WORD ANIMATION
 (function() {
   const headline = document.getElementById('heroHeadline');
   ['line1','line2'].forEach((cls, li) => {
@@ -757,7 +1233,7 @@ document.querySelectorAll('a, button, .filter-btn, .load-more-btn, .form-submit'
   });
 })();
 
-// ── SCROLL OBSERVER ──
+// SCROLL REVEAL
 const revealObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
@@ -770,7 +1246,22 @@ const revealObs = new IntersectionObserver(entries => {
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal, .section-header').forEach(el => revealObs.observe(el));
 
-// ── STATS COUNTER ──
+// Fallback: if local file protocol, reveal everything immediately
+if (location.protocol === 'file:') {
+  document.querySelectorAll('.reveal, .section-header').forEach(el => {
+    el.classList.add('visible');
+    el.querySelector?.('.section-eyebrow')?.classList.add('visible');
+    el.querySelector?.('.section-title')?.classList.add('visible');
+  });
+  document.querySelectorAll('.service-row').forEach(el => el.classList.add('row-visible'));
+  document.querySelectorAll('.stat-cell').forEach(el => {
+    el.classList.add('visible');
+    const num = el.querySelector('.stat-num[data-target]');
+    if (num) num.textContent = num.dataset.target + (num.dataset.suffix || '');
+  });
+}
+
+// STATS COUNTER
 const statsObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
@@ -779,8 +1270,7 @@ const statsObs = new IntersectionObserver(entries => {
     if (!num) return;
     const target = parseInt(num.dataset.target);
     const suffix = num.dataset.suffix || '';
-    const dur = 1600;
-    const start = performance.now();
+    const dur = 1600; const start = performance.now();
     (function step(now) {
       const p = Math.min((now - start) / dur, 1);
       const ease = 1 - Math.pow(1 - p, 3);
@@ -793,40 +1283,32 @@ const statsObs = new IntersectionObserver(entries => {
 }, { threshold: 0.3 });
 document.querySelectorAll('.stat-cell').forEach(el => statsObs.observe(el));
 
-// ── SERVICE ROWS ──
+// SERVICE ROWS
 const serviceObs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('row-visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.service-row').forEach(el => serviceObs.observe(el));
 
-// ── ACTIVE NAV ──
-const sections = ['hero','work','process','about','services','clients','contact'];
+// ACTIVE NAV
 const navLinks = document.querySelectorAll('.nav-links a[data-section]');
 const navObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      navLinks.forEach(a => {
-        a.classList.toggle('active', a.dataset.section === e.target.id);
-      });
-    }
+    if (e.isIntersecting) navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === e.target.id));
   });
 }, { threshold: 0.4 });
-sections.forEach(id => { const el = document.getElementById(id); if (el) navObs.observe(el); });
-
-// ── BACK TO TOP ──
-const backTop = document.getElementById('backTop');
-window.addEventListener('scroll', () => {
-  backTop.classList.toggle('show', window.scrollY > 600);
+['hero','process','work','about','founders','directors','testimonials','clients','contact'].forEach(id => {
+  const el = document.getElementById(id); if (el) navObs.observe(el);
 });
-backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-backTop.addEventListener('mouseenter', () => setCursor('hover'));
-backTop.addEventListener('mouseleave', () => setCursor(''));
 
-// ── LIGHTBOX ──
+// BACK TO TOP
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => backTop.classList.toggle('show', window.scrollY > 600));
+backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// LIGHTBOX
 const lightbox = document.getElementById('lightbox');
 const lbFrame  = document.getElementById('lightboxFrame');
 const lbTitle  = document.getElementById('lightboxTitle');
-
 function openLightbox(id, title) {
   lbFrame.src = `https://player.vimeo.com/video/${id}?autoplay=1&color=2de4c8&title=0&byline=0&portrait=0`;
   lbTitle.textContent = title || '';
@@ -840,12 +1322,12 @@ function closeLightbox() {
 }
 document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+// keydown handled below with founder modal
 
-// ── PORTFOLIO ──
-let allVideos = videoIds.map(id => ({ vimeoId: id, cat: categoryMap[id] || 'tvc', title: '', thumb: '' }));
+// FILTER + GRID
+let allVideos = [];
 let currentFilter = 'all';
-const PAGE = 12;
+const PAGE = 9;
 let page = 0;
 
 document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -895,57 +1377,82 @@ function makeCard(v) {
       <div class="work-cat">${catLabels[v.cat] || 'Film'}</div>
     </div>`;
   card.addEventListener('click', () => openLightbox(v.vimeoId, v.title));
-  // Hide cursor on video tiles — card's own play button handles it
-  card.addEventListener('mouseenter', () => setCursor('hidden'));
-  card.addEventListener('mouseleave', () => setCursor(''));
+  card.addEventListener('mouseenter', () => { setCursor('play-cursor'); playLabel.classList.add('show'); });
+  card.addEventListener('mouseleave', () => { setCursor(''); playLabel.classList.remove('show'); });
   return card;
 }
 
-// ── VIMEO THUMBNAILS ──
-async function fetchAllThumbs() {
-  for (const v of allVideos) {
-    try {
-      const res = await fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${v.vimeoId}&width=640`);
-      if (!res.ok) continue;
-      const d = await res.json();
-      v.title = d.title || '';
-      v.thumb = d.thumbnail_url || '';
-      const card = document.querySelector(`.work-card[data-id="${v.vimeoId}"]`);
-      if (card) {
-        const ph = card.querySelector('.thumb-ph');
-        if (ph && v.thumb) {
-          const img = document.createElement('img');
-          img.className = 'work-thumb'; img.src = v.thumb; img.alt = v.title; img.loading = 'lazy';
-          ph.replaceWith(img);
-        }
-        const t = card.querySelector('.work-title');
-        if (t && v.title) t.textContent = v.title;
-      }
-    } catch {}
-    await new Promise(r => setTimeout(r, 55));
+// FOUNDERS DATA
+const foundersData = {
+  rohit: {
+    initials: 'RM',
+    role: 'Director & Co-Founder',
+    name: 'Rohit Mhatre',
+    bio: 'With over a decade in film and branded content, Rohit has shaped the creative voice of Cinerea from day one. His approach to storytelling is rooted in simplicity — finding the single, resonant truth in every brief and building a film around it.\n\nHe has led direction on campaigns for Honda, ITC, Mahindra, and Maruti Suzuki, and brings a deep understanding of how brand communication translates to cinematic craft. On set, he is known for his calm precision and the trust he builds with talent.\n\nBefore founding Cinerea, Rohit spent several years in ad film production and documentary work, sharpening the instincts that now define the company\'s output.'
+  },
+  sumukh: {
+    initials: 'ST',
+    role: 'Executive Producer & Co-Founder',
+    name: 'Sumukh Tawde',
+    bio: 'Sumukh is the operational backbone of Cinerea. As Executive Producer, he has built the systems, relationships, and processes that allow the company to consistently punch above its weight — delivering high-production-value output without the overhead of a large agency.\n\nHis expertise lies in structuring productions that are lean by design: precise crew builds, tight schedules, and cost architectures that protect quality while respecting budget. Over the years, he has produced over 130 films across formats, from 30-second TVCs to multi-day brand campaigns.\n\nSumukh brings a rare combination of financial discipline and creative empathy — understanding exactly where to invest for maximum on-screen impact.'
+  },
+  rohan: {
+    initials: 'RP',
+    role: 'Creative Lead & Co-Founder',
+    name: 'Rohan Patil',
+    bio: 'Rohan is the visual architect of Cinerea\'s work. As Creative Lead, he is responsible for the look, feel, and finish of everything that leaves the edit suite — from the grade on a flagship brand film to the thumbnail strategy for a digital-first campaign.\n\nTrained in cinematography and post-production, Rohan understands the full pipeline from a single frame\'s perspective. He works closely with directors, DPs, and editors to ensure that Cinerea\'s output maintains a consistent, elevated quality regardless of format or budget tier.\n\nHe has a particular interest in 3D and animation-led content, and has spearheaded Cinerea\'s growing practice in product visualisation and motion design for brands.'
   }
-}
+};
 
-// ── CONTACT FORM ──
+function openFounder(id) {
+  const f = foundersData[id];
+  if (!f) return;
+  document.getElementById('founderModalInitials').textContent = f.initials;
+  document.getElementById('founderModalRole').textContent = f.role;
+  document.getElementById('founderModalName').textContent = f.name;
+  document.getElementById('founderModalBio').innerHTML = f.bio.split('\n\n').map(p => `<p style="margin-bottom:1rem">${p}</p>`).join('');
+  document.getElementById('founderModalBg').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeFounder() {
+  document.getElementById('founderModalBg').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('founderModalClose').addEventListener('click', closeFounder);
+document.getElementById('founderModalBg').addEventListener('click', e => { if (e.target === document.getElementById('founderModalBg')) closeFounder(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeLightbox(); closeFounder(); } });
+
+// Hover cursor on founder cards + click via delegation
+document.querySelectorAll('.founder-card').forEach(el => {
+  el.addEventListener('mouseenter', () => setCursor('hover'));
+  el.addEventListener('mouseleave', () => setCursor(''));
+  el.addEventListener('click', () => {
+    const id = el.dataset.founder;
+    if (id) openFounder(id);
+  });
+});
+
+
 document.getElementById('contactForm').addEventListener('submit', () => {
   const btn = document.getElementById('formSubmit');
   const success = document.getElementById('formSuccess');
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
+  btn.textContent = 'Sending...'; btn.disabled = true;
   setTimeout(() => {
-    btn.style.display = 'none';
-    success.classList.add('show');
-    document.getElementById('fname').value = '';
-    document.getElementById('fcompany').value = '';
-    document.getElementById('ftype').value = '';
-    document.getElementById('fbudget').value = '';
-    document.getElementById('fmessage').value = '';
+    btn.style.display = 'none'; success.classList.add('show');
+    ['fname','fcompany','ftype','fbudget','fmessage'].forEach(id => {
+      const el = document.getElementById(id); if (el) el.value = '';
+    });
   }, 1200);
 });
 
-// ── INIT ──
-renderGrid(true);
-fetchAllThumbs();
+// FIRESTORE — LOAD VIDEOS IN REALTIME
+const q = query(collection(db, 'videos'), orderBy('order', 'asc'));
+onSnapshot(q, snap => {
+  allVideos = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  page = 0;
+  renderGrid(true);
+});
+
 </script>
 </body>
 </html>
